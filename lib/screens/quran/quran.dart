@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:z/screens/cubit/appCubit/appcubit.dart';
 import 'package:z/screens/quran/suraitem.dart';
 
 class quranSccreen extends StatelessWidget {
@@ -87,7 +88,7 @@ class quranSccreen extends StatelessWidget {
           child: ListView.separated(
               physics: BouncingScrollPhysics(),
               itemBuilder: (context, index) {
-                return surahItem(context);
+                return surahItem(context,appCubit.get(context).chapters[index]);
               },
               separatorBuilder: (context, index) {
                 return Padding(
@@ -98,7 +99,7 @@ class quranSccreen extends StatelessWidget {
                   ),
                 );
               },
-              itemCount: 10),
+              itemCount: appCubit.get(context).chapters.length),
         )
       ],
     );

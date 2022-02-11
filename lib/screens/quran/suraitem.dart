@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-Widget surahItem(context) {
+Widget surahItem(context,chapter) {
   return InkWell(
     onTap: () {},
     child: Container(
@@ -20,7 +20,7 @@ Widget surahItem(context) {
                   size: 35,
                 ),
                 Text(
-                  '1',
+                  '${chapter['id']}',
                   style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
                 ),
               ],
@@ -31,14 +31,14 @@ Widget surahItem(context) {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'EL FATEHA',
+                '${chapter['name']}',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.white),
               ),
               SizedBox(
                 height: 3,
               ),
               Text(
-                'MECCAN ● 7 VERSES',
+                '${chapter['revelation_place']} ● ${chapter['verses']} VERSES',
                 style: TextStyle(fontWeight: FontWeight.w500,color: Colors.white30),
               ),
             ],
@@ -47,7 +47,7 @@ Widget surahItem(context) {
             width: 55,
           ),
           Text(
-            'الفاتحة',
+            '${chapter['arabic_name']}',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.purple,
             ),
             overflow: TextOverflow.ellipsis,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:z/dio_helpr/dio_helper.dart';
+import 'cubit/appCubit/appcubit.dart';
 import 'cubit/cubit.dart';
 import 'cubit/stats.dart';
 
@@ -22,6 +23,16 @@ class HomeScreen extends StatelessWidget {
                 fit: BoxFit.fill,
               ),
               Scaffold(
+                drawer: Drawer(
+                    child: SingleChildScrollView(
+                        child: Container(
+                          color: Color.fromARGB(255, 87, 89, 116),
+                          child: Text("This is content of drawer"),
+                        ),
+                    ),
+
+
+                ),
                 backgroundColor: Colors.transparent,
                 appBar: AppBar(
                   backgroundColor: Colors.transparent,
@@ -35,6 +46,14 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   actions: [
+                    IconButton(
+                        icon: Icon(
+                          Icons.brightness_4_outlined,
+                          color: Color.fromARGB(255, 87, 89, 116),
+                        ),
+                        onPressed: () {
+                          appCubit.get(context).ChangeTheme();
+                        }),
                     IconButton(
                         icon: Icon(
                           Icons.search,
