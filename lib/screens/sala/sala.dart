@@ -22,7 +22,7 @@ class salaTimesScreen extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(15),
                     child: Image(
-                      image: AssetImage('assets/images/M-design.png'),
+                      image: AssetImage('assets/images/M-design-rotated.png'),
                       fit: BoxFit.cover,
                     ),
                   ),

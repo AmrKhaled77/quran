@@ -15,22 +15,28 @@ Widget salaItem(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-            width: 120,
-            decoration: BoxDecoration(
-                color: Colors.purple,
-                border: Border.all(width: 10, color: Colors.purple),
-                borderRadius: BorderRadius.circular(5)),
-            child: Center(
-              child: Text(
-                Estring,
-                style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
-                textAlign: TextAlign.right,
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                width: 120,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Image.asset(
+                    'assets/images/M-design-rotated.png',
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
-            ),
+              Text(
+                Estring,
+                textDirection: TextDirection.ltr,
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold),
+              ),
+            ],
           ),
           Container(
             child: Center(
@@ -44,22 +50,36 @@ Widget salaItem(
               ),
             ),
           ),
-          Container(
-            width: 120,
-            decoration: BoxDecoration(
-                color: Colors.purple,
-                border: Border.all(width: 10, color: Colors.purple),
-                borderRadius: BorderRadius.circular(5)),
-            child: Center(
-              child: Text(
-                Astring,
-                style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
-                textAlign: TextAlign.right,
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                width: 120,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Image.asset(
+                    'assets/images/M-design-unrotated.png',
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
-            ),
+              Center(
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.2,
+                  child: Center(
+                    child: Text(
+                      Astring,
+                      textDirection: TextDirection.rtl,
+                      style: TextStyle(
+                          fontFamily: 'Amiri',
+                          color: Colors.white,
+                          fontSize: 27,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),

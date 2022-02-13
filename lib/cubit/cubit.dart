@@ -1,8 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:z/cubit/stats.dart';
 
-import 'package:z/screens/cubit/stats.dart';
+
 
 import 'package:z/screens/quran/quran.dart';
 
@@ -20,7 +21,7 @@ class QuranCubit extends Cubit<QuranStates> {
   List<Widget> screens = [
     quranSccreen(),
     salaTimesScreen(),
-    // radioScreen(),
+     radioScreen(),
     sebhascreen(),
   ];
   List<String> titles = [

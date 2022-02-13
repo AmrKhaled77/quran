@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:z/dio_helpr/dio_helper.dart';
-import 'package:z/screens/cubit/appCubit/appcubit.dart';
-import 'package:z/screens/cubit/appCubit/appcubitstats.dart';
 import 'package:z/screens/homescreen.dart';
+
+import 'cubit/appCubit/appcubit.dart';
+import 'cubit/appCubit/appcubitstats.dart';
 
 void main() {
   DioHelper.inIt();

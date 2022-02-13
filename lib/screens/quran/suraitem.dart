@@ -1,13 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+import 'package:z/cubit/appCubit/appcubit.dart';
+import 'package:z/screens/quran/reeding_screen.dart';
 
-Widget surahItem(context,chapter) {
+Widget surahItem(context, chaptres) {
   return InkWell(
-    onTap: () {},
+    onTap: () {
+      Navigator.push(context, MaterialPageRoute(builder:(context)=>ReadingScreen() ));
+appCubit.get(context).getChapterVerses( chaptres['id']);
+
+    },
     child: Container(
       width: double.infinity,
-      height: MediaQuery.of(context).size.height * 0.1,
+      height: MediaQuery.of(context).size.height * 0.122,
       child: Row(
         children: [
           Padding(
@@ -16,41 +21,54 @@ Widget surahItem(context,chapter) {
               alignment: Alignment.center,
               children: [
                 ImageIcon(
-                  AssetImage('assets/images/star.png'),color: Colors.purple,
-                  size: 35,
+                  AssetImage('assets/images/star.png'),
+                  color: Colors.purple,
+                  size: 40,
                 ),
                 Text(
-                  '${chapter['id']}',
-                  style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+                  '${chaptres['id']}',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontSize: 12),
                 ),
               ],
             ),
           ), // surah number border
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                '${chapter['name']}',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.white),
-              ),
-              SizedBox(
-                height: 3,
-              ),
-              Text(
-                '${chapter['revelation_place']} ● ${chapter['verses']} VERSES',
-                style: TextStyle(fontWeight: FontWeight.w500,color: Colors.white30),
-              ),
-            ],
-          ),
-          SizedBox(
-            width: 55,
-          ),
-          Text(
-            '${chapter['arabic_name']}',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.purple,
+          Container(
+            width: MediaQuery.of(context).size.width * 0.45,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '${chaptres['name'].toUpperCase()}',
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
+                ),
+                SizedBox(
+                  height: 3,
+                ),
+                Text(
+                  '${chaptres['revelation_place'].toUpperCase()} ● ${chaptres['verses']} VERSES',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w500, color: Colors.white30),
+                ),
+              ],
             ),
-            overflow: TextOverflow.ellipsis,
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width * 0.31,
+            child: Text(
+              '${chaptres['arabic_name'].toUpperCase()}',
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.purple),
+              textAlign: TextAlign.right,
+            ),
           ),
         ],
       ),

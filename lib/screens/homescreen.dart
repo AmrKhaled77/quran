@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:z/cubit/appCubit/appcubit.dart';
+import 'package:z/cubit/cubit.dart';
+import 'package:z/cubit/stats.dart';
 import 'package:z/dio_helpr/dio_helper.dart';
-import 'cubit/appCubit/appcubit.dart';
-import 'cubit/cubit.dart';
-import 'cubit/stats.dart';
+import 'package:z/screens/search/search_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -59,7 +60,9 @@ class HomeScreen extends StatelessWidget {
                           Icons.search,
                           color: Color.fromARGB(255, 87, 89, 116),
                         ),
-                        onPressed: () {})
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder:(context)=>SearchScreen() ));
+                        })
                   ],
                   title: Text(
                     QuranCubit.get(context)
