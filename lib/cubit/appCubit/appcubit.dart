@@ -64,4 +64,28 @@ bool hasDat=false;
     });
   }
   int lastRead=3;
+
+  List<dynamic> search=[];
+  void getSearchVerses(String Search ){
+    emit(quranGetDataLoding());
+    DioHelper.getData(hedrs: {
+      'Content-Type':'application/json',
+      'Authorization':'Bearer YjcxZGRiNTAtMTZmYS00ZTI5LTkwNTMtMTQwZTI1MDE4NGY4',
+    },path: 'v1/quran/Search', query: {
+      'query':Search,
+
+
+    }
+
+    ).then((value) {
+
+      search =value.data['results'];
+
+      print(search[1]['text']);
+      emit(quranGetDataSucsses());
+    }).catchError((error){
+      emit(quranGetDataError());
+      print(error.toString());
+    });
+  }
 }
