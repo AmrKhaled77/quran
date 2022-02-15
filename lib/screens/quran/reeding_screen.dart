@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:z/cubit/appCubit/appcubit.dart';
 import 'package:z/screens/quran/reading_item.dart';
 
-class ReadingScreen extends StatelessWidget {
 
+class ReadingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: Stack(
+        alignment: Alignment.center,
         children: [
           Image(
             image: AssetImage('assets/images/backgroundupperdraw.png'),
@@ -15,33 +17,59 @@ class ReadingScreen extends StatelessWidget {
             height: double.infinity,
             fit: BoxFit.fill,
           ),
-          buildreadinScreen(context)
-
+          Padding(
+            padding: EdgeInsets.only(left: 12, right: 12, top: 25),
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.85,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: Color.fromARGB(255, 16, 15, 54),
+              ),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.03,
+                  ),
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.095,
+                    child: Center(
+                        child: Image.asset(
+                          'assets/images/basmala.png',
+                          fit: BoxFit.fill,
+                        )),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.03,
+                  ),
+                  Expanded(child: buildReadingScreen(context)),
+                ],
+              ),
+            ),
+          ),
         ],
-
       ),
     );
   }
-  Widget buildreadinScreen(context){
-    if(appCubit.get(context).hasData==false){
-      return CircularProgressIndicator();
-    }else{
-      return   Padding(
-        padding: const EdgeInsets.all(28.0),
-        child: Container(
-          child: Expanded(child:
-          ListView.builder(
-              physics: BouncingScrollPhysics(),
-              itemBuilder: (context, index) {
-                return readingIteem(appCubit.get(context).verses[index]);
-              },
-              itemCount: appCubit.get(context).verses.length),
-          ),
-        ),
+
+  Widget buildReadingScreen(context) {
+    if (appCubit.get(context).verses.isEmpty) {
+      return Center(
+          child: CircularProgressIndicator(
+          ));
+    } else {
+      return Padding(
+        padding: const EdgeInsets.only(right: 12, left: 12, bottom: 15),
+        child: ListView.builder(
+            physics: BouncingScrollPhysics(),
+            itemBuilder: (context, index) {
+              return Column(
+                children: [
+                  readingItem(appCubit.get(context).verses[index]),
+                ],
+              );
+            },
+            itemCount: appCubit.get(context).verses.length),
       );
-
-
-  }
-
+    }
   }
 }

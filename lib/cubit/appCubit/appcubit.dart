@@ -1,4 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:intl/intl.dart';
+import 'package:z/cache_helper/cache_helper.dart';
 import 'package:z/dio_helpr/dio_helper.dart';
 import 'appcubitstats.dart';
 
@@ -38,23 +42,31 @@ emit(quranGetDataLoding());
   });
 }
 bool hasDat=false;
-
+int total_pages;
   List<dynamic> verses=[];
-  void getChapterVerses(int chapter ){
+  void getChapterVerses({
+  @required int chapter,
+    int  page=1,
+}){
     emit(quranGetDataLoding());
     DioHelper.getData(hedrs: {
       'Content-Type':'application/json',
       'Authorization':'Bearer YjcxZGRiNTAtMTZmYS00ZTI5LTkwNTMtMTQwZTI1MDE4NGY4',
     },path: 'v1/quran/Verses', query: {
       'chapter':chapter,
+      'page':page
+
+
 
 
     }
 
     ).then((value) {
 
-      verses=value.data['verses'];
+      verses.addAll(value.data['verses']);
+      verses.cast();
       hasDat=!hasData;
+      
 
       print(verses[1]['text']);
       emit(quranGetDataSucsses());
@@ -64,7 +76,6 @@ bool hasDat=false;
     });
   }
   int lastRead=3;
-
   List<dynamic> search=[];
   void getSearchVerses(String Search ){
     emit(quranGetDataLoding());
@@ -88,4 +99,58 @@ bool hasDat=false;
       print(error.toString());
     });
   }
+
+  bool salaTimesHasData=false;
+List<dynamic> salaTimes=[];
+  void getSalaTimes(){
+    emit(quranGetDataLoding());
+    DioHelper.getData(hedrs: {
+      'Content-Type':'application/json',
+      'Authorization':'Bearer YjcxZGRiNTAtMTZmYS00ZTI5LTkwNTMtMTQwZTI1MDE4NGY4',
+    },path: 'v1/prayer/Times', query: {
+      'location':'cairo',
+
+
+    }
+
+    ).then((value) {
+
+      salaTimes =value.data['times'];
+      salaTimesHasData=!salaTimesHasData;
+
+      print(salaTimes[1]['times']);
+      emit(quranGetDataSucsses());
+    }).catchError((error){
+      emit(quranGetDataError());
+      print(error.toString());
+    });
+  }
+
+
+
+
+
+   String todayDate() {
+    var now = new DateTime.now();
+    String formattedTime = DateFormat('kk:mm').format(now);
+    return formattedTime;
+
+
+  }
+  int currentSurah = 1;
+  String currentSurahName='a';
+
+  void saveDataCache(context,String value,String key){
+    cacheHelper.PutData(key: key, value: value);
+    emit(SavedataState());
+
+  }
+  void saveInt(context,int value,String key)
+  {
+    cacheHelper.PutInt(key: key, value: value);
+    emit(SavedataState());
+  }
+
+
+
 }

@@ -1,13 +1,28 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:z/cache_helper/cache_helper.dart';
 import 'package:z/cubit/appCubit/appcubit.dart';
 import 'package:z/screens/quran/reeding_screen.dart';
 
 Widget surahItem(context, chaptres) {
+
   return InkWell(
     onTap: () {
       Navigator.push(context, MaterialPageRoute(builder:(context)=>ReadingScreen() ));
-appCubit.get(context).getChapterVerses( chaptres['id']);
+appCubit.get(context).getChapterVerses( chapter: chaptres['id']);
+
+      appCubit.get(context).currentSurah = chaptres['id'];
+
+
+      appCubit.get(context).currentSurahName
+      =appCubit.get(context).chapters[appCubit.get(context).currentSurah - 1]['name'];
+      appCubit.get(context).saveDataCache
+        (context, appCubit.get(context).currentSurahName, 'suraName');
+      appCubit.get(context).saveInt(context,appCubit.get(context).currentSurah , 'suraID');
+
+
+
+
 
     },
     child: Container(

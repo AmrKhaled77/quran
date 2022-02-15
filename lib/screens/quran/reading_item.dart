@@ -1,12 +1,16 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-Widget readingIteem(verses){
-
-  return Text('${verses['text']} ﴿۝﴾',style: TextStyle(color: Colors.white
-  ,fontSize: 16,fontWeight: FontWeight.w300
-  )
-
-
-    ,);
+Widget readingItem(verses) {
+  return Padding(
+    padding: const EdgeInsets.all(10.0),
+    child: Text(
+      '${verses['text']} ﴿ ${verses['number']} ﴾',
+      textAlign: TextAlign.right,
+      textDirection: TextDirection.rtl,
+      style: TextStyle(
+          color: Colors.white,
+          fontSize: 20,
+          fontWeight: FontWeight.bold,fontFamily: 'Amiri'),
+    ),
+  );
 }

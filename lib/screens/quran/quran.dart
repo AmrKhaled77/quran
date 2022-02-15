@@ -4,9 +4,11 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:z/cubit/appCubit/appcubit.dart';
 import 'package:z/cubit/appCubit/appcubitstats.dart';
+import 'package:z/screens/quran/reeding_screen.dart';
 import 'package:z/screens/quran/suraitem.dart';
 
 class quranSccreen extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<appCubit,ThemeStates>(
@@ -15,7 +17,21 @@ class quranSccreen extends StatelessWidget {
         return  Column(
           children: [
             InkWell(
-              onTap: () {},
+              onTap: () {
+
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => ReadingScreen()));
+                  // appCubit.get(context).getChapterVerses(
+                  //   chapter: appCubit.get(context).currentSurah,
+                  // );
+                  for(int i=1;i<30;i++){
+                    appCubit.get(context).getChapterVerses(
+                      chapter: appCubit.get(context).currentSurah,
+                      page: i
+                    );
+                  }
+
+              },
               child: Padding(
                 padding: const EdgeInsets.only(
                     left: 12.0, right: 12, bottom: 12, top: 15),
@@ -69,12 +85,12 @@ class quranSccreen extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text('EL FATEH',
+                                Text('${GetlastRead(context)}',
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.w700,
-                                        fontSize: 15)),
-                                Text('SURAH NO: 1',
+                                        fontSize: 18)),
+                                Text('SURAH NO: ${appCubit.get(context).currentSurah}',
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.w700,
@@ -126,6 +142,13 @@ class quranSccreen extends StatelessWidget {
             },
             itemCount: appCubit.get(context).chapters.length),
       );
+    }
+  }
+  String GetlastRead(context){
+    if(appCubit.get(context).currentSurahName==null)
+      {return '';}
+    else{
+      return appCubit.get(context).currentSurahName;
     }
   }
 }

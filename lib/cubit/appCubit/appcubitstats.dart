@@ -7,4 +7,5 @@ class AppChangeThemeSTete extends ThemeStates{}
 class quranGetDataSucsses extends ThemeStates{}
 class quranGetDataError extends ThemeStates{}
 class quranGetDataLoding extends ThemeStates{}
+class SavedataState extends ThemeStates{}
 

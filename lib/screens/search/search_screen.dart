@@ -12,9 +12,7 @@ class SearchScreen extends StatelessWidget {
         listener: (context,state){},
         builder: (context,state){
           return Scaffold(
-            appBar: AppBar(
-              backgroundColor: Color.fromARGB(0, 0, 0, 0),
-            ),
+
             body: Stack(
               children: [
                 Image(
@@ -30,29 +28,44 @@ class SearchScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(20.0),
                       child: Container(
 
-                        child: TextFormField(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextFormField(
 
-                          controller: searchController,
-                          keyboardType: TextInputType.text,
-                          validator: (String value){
-                            if(value.isEmpty){
-                              return 'search must not be empty';
-                            }return null;
-                          },
-                          decoration: InputDecoration(
-                            prefixIcon:Icon(Icons.search),
-                            labelText: 'search',
+                            controller: searchController,
+                            keyboardType: TextInputType.text,
+                            validator: (String value){
+                              if(value.isEmpty){
+                                return 'search must not be empty';
+                              }return null;
+                            },
+                            decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Colors.blueAccent,
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(50)
+                              ),
+                              prefixIcon:Icon(Icons.search),
+                              labelText: 'search',
+                            ),
+                            onChanged: (value){
+                              appCubit.get(context).getSearchVerses(value);
+                            },
                           ),
-                          onChanged: (value){
-                            appCubit.get(context).getSearchVerses(value);
-                          },
                         ),
                       ),
                     ),
                     Expanded(
                       child:   ListView.separated(itemBuilder: (context,index){
 
-                        return  Text(appCubit.get(context).search[index]['text']);
+                        return  Container(
+                          child: Text(appCubit.get(context).search[index]['text'],
+                          style: TextStyle(color: Colors.white,fontWeight:FontWeight.w300,
+                          fontSize: 20
+                          ),
+                          ),
+                        );
 
                       },
 
