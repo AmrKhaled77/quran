@@ -55,20 +55,15 @@ int total_pages;
     },path: 'v1/quran/Verses', query: {
       'chapter':chapter,
       'page':page
-
-
-
-
     }
 
     ).then((value) {
 
       verses.addAll(value.data['verses']);
-      verses.cast();
+      verses.sort((a, b) => a['number'].compareTo(b['number']));
       hasDat=!hasData;
-      
 
-      print(verses[1]['text']);
+
       emit(quranGetDataSucsses());
     }).catchError((error){
       emit(quranGetDataError());
@@ -151,6 +146,29 @@ List<dynamic> salaTimes=[];
     emit(SavedataState());
   }
 
+int totalPages;
+  void getTotalPages({
+    @required int chapter,
+    int  page=1,
+  }){
+    emit(quranGetDataLoding());
+    DioHelper.getData(hedrs: {
+      'Content-Type':'application/json',
+      'Authorization':'Bearer YjcxZGRiNTAtMTZmYS00ZTI5LTkwNTMtMTQwZTI1MDE4NGY4',
+    },path: 'v1/quran/Verses', query: {
+      'chapter':chapter,
+      'page':page
+    }
+
+    ).then((value) {
+
+      totalPages=value.data['total_pages'];
 
 
+      emit(quranGetDataSucsses());
+    }).catchError((error){
+      emit(quranGetDataError());
+      print(error.toString());
+    });
+  }
 }

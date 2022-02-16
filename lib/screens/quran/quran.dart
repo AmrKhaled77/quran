@@ -30,6 +30,9 @@ class quranSccreen extends StatelessWidget {
                       page: i
                     );
                   }
+                  appCubit.get(context).verses.clear();
+
+
 
               },
               child: Padding(

@@ -8,12 +8,16 @@ Widget surahItem(context, chaptres) {
 
   return InkWell(
     onTap: () {
+      for(int i=1;i<30;i++){
+        appCubit.get(context).getChapterVerses(
+            chapter: chaptres['id'],
+            page: i
+        );
+      }
+      appCubit.get(context).verses.clear();
       Navigator.push(context, MaterialPageRoute(builder:(context)=>ReadingScreen() ));
-appCubit.get(context).getChapterVerses( chapter: chaptres['id']);
-
+// appCubit.get(context).getChapterVerses( chapter: chaptres['id']);
       appCubit.get(context).currentSurah = chaptres['id'];
-
-
       appCubit.get(context).currentSurahName
       =appCubit.get(context).chapters[appCubit.get(context).currentSurah - 1]['name'];
       appCubit.get(context).saveDataCache
