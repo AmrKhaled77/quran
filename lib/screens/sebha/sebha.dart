@@ -1,96 +1,137 @@
-
-
 import 'package:flutter/material.dart';
 
-
-class sebhascreen extends StatefulWidget {
+class SebhaScreen extends StatefulWidget {
   @override
-  _sebhascreenState createState() => _sebhascreenState();
+  _SebhaScreenState createState() => _SebhaScreenState();
 }
 
-class _sebhascreenState extends State<sebhascreen> {
-double taspeh=0.0;
-String tspehTyp='سبحان الله';
-int duration=0;
-
+class _SebhaScreenState extends State<SebhaScreen> {
+  double taspeh = 0.0;
+  String tspehTyp = 'سبحان الله';
+  int duration = 0;
+  var currentAngle = 0.0;
 
   @override
   Widget build(BuildContext context) {
-
-    return Column(
-mainAxisAlignment: MainAxisAlignment.center,
-
-      children: [
-        Text(tspehTyp,style: TextStyle(fontSize: 50,fontWeight: FontWeight.w800,
-        color: Colors.white
-
-        ),),
-        SizedBox(height: 70,),
-        Text("$taspeh",style: TextStyle(
-          fontWeight: FontWeight.w900,
-          fontSize: 50,
-color: Colors.white,
-        ),),
-  Slider(
-    min: 0.0,
-    max: 33.0,
-    value: taspeh,
-    activeColor:Colors.purple ,
-    onChanged: (value){
-      setState(() {
-        taspeh=value;
-      });
-    },
-  ),
-        SizedBox(height: 27,),
-        Container(
-          width: double.infinity,
-          child: ElevatedButton(onPressed: (){
-            setState(() {
-              taspeh++;
-            });
-            if(taspeh ==33&&duration==0){
-              setState(() {
-                taspeh=0.0;
-                tspehTyp='الحمد لله ';
-                duration++;
-              });
-            }
-            if(taspeh ==33&&duration==1){
-              setState(() {
-                taspeh=0.0;
-                tspehTyp='الله اكبر ';
-                duration++;
-              });
-            }
-            if(taspeh ==33&&duration==2){
-              setState(() {
-                taspeh=0.0;
-                tspehTyp='لا الاه الا الله';
-                duration++;
-              });
-            }
-            if(taspeh ==33&&duration==3){
-              setState(() {
-                taspeh=0.0;
-                tspehTyp='سبحان الله';
-                duration=0;
-              });
-            }
-
-          },
-              style: ElevatedButton.styleFrom(primary: Colors.purple,
-    shape: new RoundedRectangleBorder(
-    borderRadius: new BorderRadius.circular(17.0),
-    ),
+    return Container(
+      width: double.infinity,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                height: MediaQuery.of(context).size.height * 0.35,
+                child: Transform.rotate(
+                  angle: currentAngle,
+                  child: Image.asset(
+                    'assets/images/sebha.png',
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
-              child: Text('taspeh')),
-        )
+              Container(
+                width: MediaQuery.of(context).size.width * 0.5,
+                height: MediaQuery.of(context).size.height * 0.075,
+                child: Center(
+                  child: Text(
+                    tspehTyp,
 
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Colors.white.withOpacity(0.9),
+                        fontSize: 30,
+                        fontFamily: 'Amiri',
+                        fontWeight: FontWeight.bold),
+                  ),
 
-      ],
+                ),
+              ),
 
+            ],
 
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.045,
+          ),
+
+          Container(
+            width: MediaQuery.of(context).size.width * 0.60,
+            height: MediaQuery.of(context).size.height * 0.075,
+            child: Slider(
+              min: 0.0,
+              max: 33.0,
+              value: taspeh,
+              activeColor: Colors.purple,
+              onChanged: null,
+            ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.045,
+          ),
+          Text("${taspeh.toInt()}",style: TextStyle(fontSize: 30,color: Colors.white),),
+          Container(
+            width: MediaQuery.of(context).size.width * 0.75,
+            height: MediaQuery.of(context).size.height * 0.075,
+            child: ElevatedButton(
+                onPressed: () {
+                  onTasbeh();
+                },
+                style: ElevatedButton.styleFrom(
+                  elevation: 0,
+                  primary: Color.fromARGB(221, 123, 30, 137),
+                  shape: new RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(15),
+                  ),
+                ),
+                child: Text(
+                  'CLICK',
+                  style: TextStyle(
+                      color: Colors.white.withOpacity(0.9),
+                      letterSpacing: 5,
+                      fontFamily: 'Amiri'),
+                )
+            ),
+          ),
+        ],
+      ),
     );
+  }
+
+  void onTasbeh() {
+    setState(() {
+      taspeh++;
+      currentAngle += 33;
+      if (taspeh == 33 && duration == 0) {
+        setState(() {
+          taspeh = 0.0;
+          tspehTyp = 'الحمد لله ';
+          duration++;
+        });
+      }
+      if (taspeh == 33 && duration == 1) {
+        setState(() {
+          taspeh = 0.0;
+          tspehTyp = 'لا اله الا الله ';
+          duration++;
+        });
+      }
+      if (taspeh == 33 && duration == 2) {
+        setState(() {
+          taspeh = 0.0;
+          tspehTyp = 'الله اكبر';
+          duration++;
+        });
+      }
+      if (taspeh == 33 && duration == 3) {
+        setState(() {
+          taspeh = 0.0;
+          tspehTyp = 'سبحان الله';
+          duration = 0;
+        });
+      }
+    });
   }
 }

@@ -83,10 +83,12 @@ Widget surahItem(context, chaptres) {
             child: Text(
               '${chaptres['arabic_name'].toUpperCase()}',
               style: TextStyle(
+                  fontFamily: 'Amiri',
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                   color: Colors.purple),
               textAlign: TextAlign.right,
+
             ),
           ),
         ],

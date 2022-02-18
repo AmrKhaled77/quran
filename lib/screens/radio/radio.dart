@@ -1,34 +1,35 @@
-import 'dart:convert';
+
 import 'package:flutter/material.dart';
-
-class radioScreen extends StatefulWidget {
-  @override
-  State<radioScreen> createState() => _radioScreenState();
-}
-
-class _radioScreenState extends State<radioScreen> {
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_qiblah/flutter_qiblah.dart';
+import 'package:z/screens/radio/qblaComponants/qibla_compass.dart';
 
 
-  @override
-
+class HadethScreen extends StatelessWidget {
+  final _deviceSupport = FlutterQiblah.androidDeviceSensorSupport();
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
+    return FutureBuilder(
+      future: _deviceSupport,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting)
+          return Center(
+            child: CircularProgressIndicator(
+              strokeWidth: 2,
+            ),
+          );
 
-        Expanded(
-          flex: 3,
-          child: Image.asset(
-            'assets/images/purpleradio.png',
-          ),
-        ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.05,
-        ),
-
-      ],
+        if (snapshot.hasError)
+          return Center(
+            child: Text('Error: ${snapshot.error.toString()}'),
+          );
+        if (snapshot.hasData)
+          return QiblaCompass();
+        else
+          return Container(
+            child: Text('Error'),
+          );
+      },
     );
   }
-
 }

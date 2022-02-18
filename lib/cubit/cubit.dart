@@ -21,8 +21,8 @@ class QuranCubit extends Cubit<QuranStates> {
   List<Widget> screens = [
     quranSccreen(),
     salaTimesScreen(),
-     radioScreen(),
-    sebhascreen(),
+    HadethScreen(),
+    SebhaScreen(),
   ];
   List<String> titles = [
     "Quran",

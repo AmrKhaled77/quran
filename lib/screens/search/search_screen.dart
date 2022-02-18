@@ -49,48 +49,67 @@ class SearchScreen extends StatelessWidget {
                               prefixIcon:Icon(Icons.search),
                               labelText: 'search',
                             ),
-                            onChanged: (value){
+                            onFieldSubmitted: (value){
                               appCubit.get(context).getSearchVerses(value);
                             },
+
+
                           ),
                         ),
                       ),
                     ),
-                    Expanded(
-                      child:   ListView.separated(itemBuilder: (context,index){
+                    Padding(
+                      padding: EdgeInsets.only(left: 12, right: 12, top: 25),
+                      child: Container(
+                        height: MediaQuery.of(context).size.height * 0.75,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: Color.fromARGB(255, 16, 15, 54),
+                        ),
+                        child: Column(
+                          children: [
 
-                        return  Container(
-                          child: Text(appCubit.get(context).search[index]['text'],
-                          style: TextStyle(color: Colors.white,fontWeight:FontWeight.w300,
-                          fontSize: 20
-                          ),
-                          ),
-                        );
+                            Expanded(
+                              child:   ListView.separated(itemBuilder: (context,index){
 
-                      },
+                                return  Container(
+                                  child: Text(appCubit.get(context).search[index]['text'],
+                                    style: TextStyle(color: Colors.white,fontWeight:FontWeight.w300,
+                                        fontSize: 20
+                                    ),
+                                  ),
+                                );
 
-                          physics: BouncingScrollPhysics(),
+                              },
 
-                          separatorBuilder: (context,index){
+                                  physics: BouncingScrollPhysics(),
 
-                            return  Padding(
+                                  separatorBuilder: (context,index){
 
-                              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                                    return  Padding(
 
-                              child: Container(
+                                      padding: const EdgeInsets.symmetric(horizontal: 12.0),
 
-                                height: 1,
+                                      child: Container(
 
-                                color: Color.fromARGB(255, 87, 89, 116),
+                                        height: 1,
 
-                              ),
+                                        color: Color.fromARGB(255, 87, 89, 116),
 
-                            );
+                                      ),
 
-                          },
+                                    );
 
-                          itemCount: appCubit.get(context).search.length),
-                    )
+                                  },
+
+                                  itemCount: appCubit.get(context).search.length),
+                            )
+
+                          ],
+                        ),
+                      ),
+                    ),
+
 
                   ],
                 ),
@@ -101,3 +120,39 @@ class SearchScreen extends StatelessWidget {
     );
   }
 }
+// Padding(
+// padding: const EdgeInsets.all(20.0),
+// child: Container(
+//
+// child: Padding(
+// padding: const EdgeInsets.all(8.0),
+// child: TextFormField(
+//
+// controller: searchController,
+// keyboardType: TextInputType.text,
+// validator: (String value){
+// if(value.isEmpty){
+// return 'search must not be empty';
+// }return null;
+// },
+// decoration: InputDecoration(
+// filled: true,
+// fillColor: Colors.blueAccent,
+// border: OutlineInputBorder(
+// borderSide: BorderSide.none,
+// borderRadius: BorderRadius.circular(50)
+// ),
+// prefixIcon:Icon(Icons.search),
+// labelText: 'search',
+// ),
+// onChanged: (value){
+// appCubit.get(context).getSearchVerses(value);
+// },
+// ),
+// ),
+// ),
+// ),
+
+
+
+

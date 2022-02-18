@@ -127,7 +127,7 @@ List<dynamic> salaTimes=[];
 
    String todayDate() {
     var now = new DateTime.now();
-    String formattedTime = DateFormat('kk:mm').format(now);
+    String formattedTime = DateFormat("h:mm").format(now);
     return formattedTime;
 
 

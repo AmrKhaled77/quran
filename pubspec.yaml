@@ -28,6 +28,12 @@ dependencies:
   flutter_local_notifications: ^3.0.1+6
   intl: ^0.16.1
   shared_preferences: ^0.5.12+4
+  flutter_qiblah: ^1.0.3+2
+  geolocator: ^6.1.14
+  flutter_svg: ^0.19.2+1
+
+
+
 
 
 
@@ -68,10 +74,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+    - family: Amiri
+      fonts:
+        - asset: fonts/Amiri/Amiri-Bold.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

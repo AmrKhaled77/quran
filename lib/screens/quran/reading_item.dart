@@ -10,7 +10,8 @@ Widget readingItem(verses) {
       style: TextStyle(
           color: Colors.white,
           fontSize: 20,
-          fontWeight: FontWeight.bold,fontFamily: 'Amiri'),
+          fontWeight: FontWeight.bold,
+          fontFamily: 'Amiri'),
     ),
   );
 }
