@@ -2,10 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_qiblah/flutter_qiblah.dart';
-import 'package:z/screens/radio/qblaComponants/qibla_compass.dart';
+import 'package:z/screens/qubla/qblaComponants/qibla_compass.dart';
 
 
-class HadethScreen extends StatelessWidget {
+
+class QublaScreen extends StatelessWidget {
   final _deviceSupport = FlutterQiblah.androidDeviceSensorSupport();
   @override
   Widget build(BuildContext context) {
