@@ -91,7 +91,7 @@ class HomeScreen extends StatelessWidget {
                         label: ""),
                     BottomNavigationBarItem(
                         icon:
-                        ImageIcon(AssetImage('assets/images/radio.png')),
+                        ImageIcon(AssetImage('assets/images/compass.png')),
                         label: ""),
                     BottomNavigationBarItem(
                         icon: ImageIcon(AssetImage('assets/images/beads.png')),

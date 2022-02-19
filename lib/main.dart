@@ -1,6 +1,9 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 import 'package:z/cache_helper/cache_helper.dart';
 import 'package:z/dio_helpr/dio_helper.dart';
 import 'package:z/screens/homescreen.dart';
@@ -38,6 +41,7 @@ class MyApp extends StatelessWidget {
           appCubit.get(context).currentSurah=suraID;
           SystemChrome.setPreferredOrientations([
             DeviceOrientation.portraitUp,
+
           ]);
 
           return  MaterialApp(
@@ -52,7 +56,32 @@ class MyApp extends StatelessWidget {
                   )
               ),
               themeMode: appCubit.get(context).isDark?ThemeMode.light:ThemeMode.dark,
-              home:HomeScreen()
+
+              home:AnimatedSplashScreen(
+                splash: Column(
+                  children: [
+                    SizedBox(
+                      height: 100,
+                    ),
+                   Lottie.network
+                      ('https://assets8.lottiefiles.com/packages/lf20_ficjsilo.json'),
+                    SizedBox(
+                      height: 100,
+                    ),
+                    Text('ISLAMY',style: TextStyle(color: Colors.white,fontSize: 55,
+                    fontWeight: FontWeight.w900, fontFamily: 'Amiri'
+
+                    ),)
+
+                  ],
+                ),
+                splashIconSize: 1000,
+                splashTransition: SplashTransition.scaleTransition,
+                backgroundColor: Colors.deepPurple,
+                nextScreen: HomeScreen(),
+              ),
+              debugShowCheckedModeBanner: false,
+
 
           );
 
