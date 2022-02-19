@@ -70,6 +70,13 @@ class MyApp extends StatelessWidget {
                     ),
                     Text('ISLAMY',style: TextStyle(color: Colors.white,fontSize: 55,
                     fontWeight: FontWeight.w900, fontFamily: 'Amiri'
+                    ),),
+                    Text('by AMR KHALED',style: TextStyle(color:
+                    Colors.grey,fontSize: 8,
+
+                    ),),
+                    Text('designed by OMAR',style: TextStyle(color:
+                    Colors.grey,fontSize: 8,
 
                     ),)
 

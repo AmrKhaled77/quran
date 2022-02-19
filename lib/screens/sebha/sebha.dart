@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class SebhaScreen extends StatefulWidget {
   @override
@@ -71,11 +72,12 @@ class _SebhaScreenState extends State<SebhaScreen> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.045,
           ),
+
           Text("${taspeh.toInt()}",style: TextStyle(fontSize: 30,color: Colors.white),),
           Container(
             width: MediaQuery.of(context).size.width * 0.75,
             height: MediaQuery.of(context).size.height * 0.075,
-            child: ElevatedButton(
+            child:ElevatedButton(
                 onPressed: () {
                   onTasbeh();
                 },
@@ -93,7 +95,7 @@ class _SebhaScreenState extends State<SebhaScreen> {
                       letterSpacing: 5,
                       fontFamily: 'Amiri'),
                 )
-            ),
+            )
           ),
         ],
       ),
@@ -109,6 +111,7 @@ class _SebhaScreenState extends State<SebhaScreen> {
           taspeh = 0.0;
           tspehTyp = 'الحمد لله ';
           duration++;
+
         });
       }
       if (taspeh == 33 && duration == 1) {
@@ -133,5 +136,30 @@ class _SebhaScreenState extends State<SebhaScreen> {
         });
       }
     });
+  }
+  clickCelpration(){
+    if(taspeh==10){
+      return Lottie.network('https://assets9.lottiefiles.com/packages/lf20_up2knbon.json',width: 70);
+    }else{
+      return  ElevatedButton(
+          onPressed: () {
+            onTasbeh();
+          },
+          style: ElevatedButton.styleFrom(
+            elevation: 0,
+            primary: Color.fromARGB(221, 123, 30, 137),
+            shape: new RoundedRectangleBorder(
+              borderRadius: new BorderRadius.circular(15),
+            ),
+          ),
+          child: Text(
+            'CLICK',
+            style: TextStyle(
+                color: Colors.white.withOpacity(0.9),
+                letterSpacing: 5,
+                fontFamily: 'Amiri'),
+          )
+      );
+    }
   }
 }
