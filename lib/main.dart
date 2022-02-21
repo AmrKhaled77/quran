@@ -1,5 +1,6 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/animation.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -46,14 +47,15 @@ class MyApp extends StatelessWidget {
 
           return  MaterialApp(
               theme: ThemeData(
-                  appBarTheme: AppBarTheme(
-                    color: Colors.white
-                  )
+                primaryColor: Colors.black,
+                accentColor:Colors.white,
+                  canvasColor: Colors.black,
+
               ),
               darkTheme: ThemeData(
-                  appBarTheme: AppBarTheme(
-                      color: Colors.black
-                  )
+                primaryColor: Colors.deepPurple,
+                accentColor: Color.fromARGB(255, 22, 31, 87),
+                canvasColor: Colors.white
               ),
               themeMode: appCubit.get(context).isDark?ThemeMode.light:ThemeMode.dark,
 

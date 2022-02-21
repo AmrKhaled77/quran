@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:z/cubit/appCubit/appcubit.dart';
+
 
 class SebhaScreen extends StatefulWidget {
   @override
@@ -7,8 +9,8 @@ class SebhaScreen extends StatefulWidget {
 }
 
 class _SebhaScreenState extends State<SebhaScreen> {
-  double taspeh = 0.0;
-  String tspehTyp = 'سبحان الله';
+
+
   int duration = 0;
   var currentAngle = 0.0;
 
@@ -30,6 +32,7 @@ class _SebhaScreenState extends State<SebhaScreen> {
                   child: Image.asset(
                     'assets/images/sebha.png',
                     fit: BoxFit.cover,
+                    color: Theme.of(context).primaryColor,
                   ),
                 ),
               ),
@@ -38,11 +41,11 @@ class _SebhaScreenState extends State<SebhaScreen> {
                 height: MediaQuery.of(context).size.height * 0.075,
                 child: Center(
                   child: Text(
-                    tspehTyp,
+                    appCubit.get(context).tspehTyp,
 
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        color: Colors.white.withOpacity(0.9),
+                        color: Theme.of(context).canvasColor,
                         fontSize: 30,
                         fontFamily: 'Amiri',
                         fontWeight: FontWeight.bold),
@@ -64,8 +67,8 @@ class _SebhaScreenState extends State<SebhaScreen> {
             child: Slider(
               min: 0.0,
               max: 33.0,
-              value: taspeh,
-              activeColor: Colors.purple,
+              value: appCubit.get(context).taspeh,
+              activeColor: Theme.of(context).primaryColor,
               onChanged: null,
             ),
           ),
@@ -73,17 +76,18 @@ class _SebhaScreenState extends State<SebhaScreen> {
             height: MediaQuery.of(context).size.height * 0.045,
           ),
 
-          Text("${taspeh.toInt()}",style: TextStyle(fontSize: 30,color: Colors.white),),
+          Text("${appCubit.get(context).taspeh.toInt()}",style:
+          TextStyle(fontSize: 30,color: Theme.of(context).canvasColor),),
           Container(
             width: MediaQuery.of(context).size.width * 0.75,
             height: MediaQuery.of(context).size.height * 0.075,
-            child:ElevatedButton(
+            child:  ElevatedButton(
                 onPressed: () {
                   onTasbeh();
                 },
                 style: ElevatedButton.styleFrom(
                   elevation: 0,
-                  primary: Color.fromARGB(221, 123, 30, 137),
+                  primary: Theme.of(context).primaryColor,
                   shape: new RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(15),
                   ),
@@ -104,41 +108,41 @@ class _SebhaScreenState extends State<SebhaScreen> {
 
   void onTasbeh() {
     setState(() {
-      taspeh++;
+      appCubit.get(context).taspeh++;
       currentAngle += 33;
-      if (taspeh == 33 && duration == 0) {
+      if (appCubit.get(context).taspeh == 33 && duration == 0) {
         setState(() {
-          taspeh = 0.0;
-          tspehTyp = 'الحمد لله ';
+          appCubit.get(context).taspeh = 0.0;
+          appCubit.get(context).tspehTyp = 'الحمد لله ';
           duration++;
 
         });
       }
-      if (taspeh == 33 && duration == 1) {
+      if (appCubit.get(context).taspeh == 33 && duration == 1) {
         setState(() {
-          taspeh = 0.0;
-          tspehTyp = 'لا اله الا الله ';
+          appCubit.get(context).taspeh = 0.0;
+          appCubit.get(context).tspehTyp = 'لا اله الا الله ';
           duration++;
         });
       }
-      if (taspeh == 33 && duration == 2) {
+      if (appCubit.get(context).taspeh == 33 && duration == 2) {
         setState(() {
-          taspeh = 0.0;
-          tspehTyp = 'الله اكبر';
+          appCubit.get(context).taspeh = 0.0;
+          appCubit.get(context).tspehTyp = 'الله اكبر';
           duration++;
         });
       }
-      if (taspeh == 33 && duration == 3) {
+      if (appCubit.get(context).taspeh == 33 && duration == 3) {
         setState(() {
-          taspeh = 0.0;
-          tspehTyp = 'سبحان الله';
+          appCubit.get(context).taspeh = 0.0;
+          appCubit.get(context).tspehTyp = 'سبحان الله';
           duration = 0;
         });
       }
     });
   }
   clickCelpration(){
-    if(taspeh==10){
+    if(appCubit.get(context).taspeh==10){
       return Lottie.network('https://assets9.lottiefiles.com/packages/lf20_up2knbon.json',width: 70);
     }else{
       return  ElevatedButton(

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_qiblah/flutter_qiblah.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:z/cubit/appCubit/appcubit.dart';
 
 import 'location_error_widget.dart';
 
@@ -113,19 +114,22 @@ class QiblahCompassWidget extends StatelessWidget {
               angle: _angle,
               child: SvgPicture.asset('assets/images/5.svg', // compass
                   color: _platformBrightness == Brightness.dark
-                      ? Colors.yellow
-                      : Colors.orange),
+                      ? Theme.of(context).primaryColor
+                      :Theme.of(context).primaryColor),
             ),
             _kaabaSvg,
             SvgPicture.asset('assets/images/3.svg', //needle
                 color: _platformBrightness == Brightness.dark
-                    ? Colors.yellow
-                    : Colors.orange),
+                    ? Theme.of(context).primaryColor
+                    : Theme.of(context).primaryColor),
             Align(
               alignment: Alignment.bottomCenter,
               child: Text(
                 "Align both arrow head\nDo not put device close to metal object.\nCalibrate the compass eveytime you use it.",
                 textAlign: TextAlign.center,
+                style: TextStyle(color: appCubit.get(context).isDark?Colors.black:
+                Colors.grey
+                ),
               ),
             )
           ],

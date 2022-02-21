@@ -171,4 +171,6 @@ int totalPages;
       print(error.toString());
     });
   }
+  String tspehTyp = 'سبحان الله';
+  double taspeh = 0.0;
 }

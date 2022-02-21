@@ -12,10 +12,13 @@ class ReadingScreen extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           Image(
-            image: AssetImage('assets/images/backgroundupperdraw.png'),
+            image: appCubit.get(context).isDark?
+            AssetImage('assets/images/backgroundupperdraw.jpg'):
+            AssetImage('assets/images/backgroundupperdraw.png'),
             width: double.infinity,
             height: double.infinity,
             fit: BoxFit.fill,
+
           ),
           Padding(
             padding: EdgeInsets.only(left: 12, right: 12, top: 25),
@@ -23,7 +26,7 @@ class ReadingScreen extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.85,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                color: Color.fromARGB(255, 16, 15, 54),
+                color: Theme.of(context).accentColor
               ),
               child: Column(
                 children: [
@@ -36,6 +39,7 @@ class ReadingScreen extends StatelessWidget {
                         child: Image.asset(
                           'assets/images/basmala.png',
                           fit: BoxFit.fill,
+                          color: Theme.of(context).canvasColor,
                         )),
                   ),
                   SizedBox(
@@ -64,7 +68,9 @@ class ReadingScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               return Column(
                 children: [
-                  readingItem(appCubit.get(context).verses[index]),
+                  readingItem(appCubit.get(context).verses[index],
+                  appCubit.get(context).isDark?Colors.black:Colors.white
+                  ),
                 ],
               );
             },

@@ -4,13 +4,16 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:z/cubit/appCubit/appcubit.dart';
 import 'package:z/cubit/appCubit/appcubitstats.dart';
+import 'package:z/cubit/cubit.dart';
 import 'package:z/screens/quran/reeding_screen.dart';
 import 'package:z/screens/quran/suraitem.dart';
+
 
 class quranSccreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var lastReadColor=appCubit.get(context).isDark?Colors.black:Colors.white;
     return BlocConsumer<appCubit,ThemeStates>(
       listener:(context,state){},
       builder:(context,state){
@@ -53,6 +56,7 @@ class quranSccreen extends StatelessWidget {
                       child: Image(
                         image: AssetImage('assets/images/lastread.png'),
                         fit: BoxFit.cover,
+
                       ),
                     ),
                     Padding(
@@ -69,12 +73,12 @@ class quranSccreen extends StatelessWidget {
                                 AssetImage(
                                   'assets/images/bookmark.png',
                                 ),
-                                color: Colors.white,
+                                color: Theme.of(context).canvasColor,
                               ),
                               Text(
                                 'Last Read',
                                 style: TextStyle(
-                                    color: Colors.white,
+                                    color: Theme.of(context).canvasColor,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 20),
                               ),
@@ -90,12 +94,12 @@ class quranSccreen extends StatelessWidget {
                               children: [
                                 Text('${GetlastRead(context)}',
                                     style: TextStyle(
-                                        color: Colors.white,
+                                        color:Theme.of(context).canvasColor,
                                         fontWeight: FontWeight.w700,
                                         fontSize: 18)),
                                 Text('SURAH NO: ${appCubit.get(context).currentSurah}',
                                     style: TextStyle(
-                                        color: Colors.white,
+                                        color: Theme.of(context).canvasColor,
                                         fontWeight: FontWeight.w700,
                                         fontSize: 15)),
                               ],

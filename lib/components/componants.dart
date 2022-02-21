@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+
 Widget salaItem(
     {@required context,
       @required String Estring,
@@ -45,7 +46,7 @@ Widget salaItem(
                 style: TextStyle(
                     fontSize: 27,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white),
+                    color: Theme.of(context).canvasColor),
                 textAlign: TextAlign.right,
               ),
             ),

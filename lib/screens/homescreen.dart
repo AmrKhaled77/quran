@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:z/cubit/appCubit/appcubit.dart';
 import 'package:z/cubit/cubit.dart';
 import 'package:z/cubit/stats.dart';
-import 'package:z/dio_helpr/dio_helper.dart';
 import 'package:z/screens/search/search_screen.dart';
+
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -18,39 +18,31 @@ class HomeScreen extends StatelessWidget {
             alignment: Alignment.topCenter,
             children: [
               Image(
-                image: AssetImage('assets/images/backgroundupperdraw.png'),
+                image: appCubit.get(context).isDark?
+                AssetImage('assets/images/backgroundupperdraw.jpg'):
+                AssetImage('assets/images/backgroundupperdraw.png'),
                 width: double.infinity,
                 height: double.infinity,
                 fit: BoxFit.fill,
               ),
               Scaffold(
-                drawer: Drawer(
-                    child: SingleChildScrollView(
-                        child: Container(
-                          color: Color.fromARGB(255, 87, 89, 116),
-                          child: Text("This is content of drawer"),
-                        ),
-                    ),
-
-
-                ),
                 backgroundColor: Colors.transparent,
                 appBar: AppBar(
                   backgroundColor: Colors.transparent,
                   elevation: 0,
                   centerTitle: true,
-                  leading: IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.settings_outlined,
-                      color: Color.fromARGB(255, 87, 89, 116),
-                    ),
-                  ),
+                  // leading: IconButton(
+                  //   onPressed: () {},
+                  //   icon: Icon(
+                  //     Icons.settings_outlined,
+                  //     color:MYTHEMEDATA().IconsColor
+                  //   ),
+                  // ),
                   actions: [
                     IconButton(
                         icon: Icon(
                           Icons.brightness_4_outlined,
-                          color: Color.fromARGB(255, 87, 89, 116),
+                          color: Theme.of(context).canvasColor,
                         ),
                         onPressed: () {
                           appCubit.get(context).ChangeTheme();
@@ -58,7 +50,7 @@ class HomeScreen extends StatelessWidget {
                     IconButton(
                         icon: Icon(
                           Icons.search,
-                          color: Color.fromARGB(255, 87, 89, 116),
+                          color:Theme.of(context).canvasColor,
                         ),
                         onPressed: () {
                           Navigator.push(context, MaterialPageRoute(builder:(context)=>SearchScreen() ));
@@ -67,7 +59,9 @@ class HomeScreen extends StatelessWidget {
                   title: Text(
                     QuranCubit.get(context)
                         .titles[QuranCubit.get(context).currentIndex],
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold,
+                    color: appCubit.get(context).isDark?Colors.black:Colors.white
+                    ),
                   ),
                 ),
                 body: QuranCubit.get(context)
@@ -78,9 +72,10 @@ class HomeScreen extends StatelessWidget {
                     QuranCubit.get(context).ChangeIndex(index);
                   },
                   type: BottomNavigationBarType.fixed,
-                  backgroundColor: Color.fromARGB(255, 22, 31, 87),
-                  unselectedIconTheme: IconThemeData(color: Colors.white),
-                  selectedIconTheme: IconThemeData(color: Colors.purple),
+                  backgroundColor: Theme.of(context).accentColor,
+                  unselectedIconTheme: IconThemeData(color: Theme.of(context).canvasColor),
+                  selectedIconTheme: IconThemeData(color: Colors.deepPurple
+                  ),
                   iconSize: 30,
                   items: [
                     BottomNavigationBarItem(

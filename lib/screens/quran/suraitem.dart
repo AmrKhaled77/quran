@@ -1,11 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:z/cache_helper/cache_helper.dart';
 import 'package:z/cubit/appCubit/appcubit.dart';
 import 'package:z/screens/quran/reeding_screen.dart';
 
-Widget surahItem(context, chaptres) {
 
+Widget surahItem(context, chaptres) {
+  var StarColor=Colors.purple;
+  var idVersessColor=Colors.white;
+  var ChaptersEnglishColor=Colors.white;
+  var ChaptersArbicColor=Colors.purple;
+  var numberVersessColor=appCubit.get(context).isDark?Colors.black:Colors.white30;
   return InkWell(
     onTap: () {
       for(int i=1;i<30;i++){
@@ -41,14 +45,14 @@ Widget surahItem(context, chaptres) {
               children: [
                 ImageIcon(
                   AssetImage('assets/images/star.png'),
-                  color: Colors.purple,
+                  color:Theme.of(context).primaryColor,
                   size: 40,
                 ),
                 Text(
                   '${chaptres['id']}',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color:  Theme.of(context).canvasColor,
                       fontSize: 12),
                 ),
               ],
@@ -65,7 +69,7 @@ Widget surahItem(context, chaptres) {
                   style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white),
+                      color:  Theme.of(context).canvasColor),
                 ),
                 SizedBox(
                   height: 3,
@@ -73,7 +77,7 @@ Widget surahItem(context, chaptres) {
                 Text(
                   '${chaptres['revelation_place'].toUpperCase()} ● ${chaptres['verses']} VERSES',
                   style: TextStyle(
-                      fontWeight: FontWeight.w500, color: Colors.white30),
+                      fontWeight: FontWeight.w500, color:numberVersessColor),
                 ),
               ],
             ),
@@ -86,7 +90,7 @@ Widget surahItem(context, chaptres) {
                   fontFamily: 'Amiri',
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: Colors.purple),
+                  color: Theme.of(context).primaryColor),
               textAlign: TextAlign.right,
 
             ),

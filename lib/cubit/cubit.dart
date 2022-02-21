@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:z/cubit/stats.dart';
 import 'package:z/screens/qubla/qubla.dart';
@@ -31,4 +32,11 @@ class QuranCubit extends Cubit<QuranStates> {
     currentIndex = index;
     emit(AppChangeBottomNavBarSTete());
   }
+
+
 }
+
+
+
+
+
