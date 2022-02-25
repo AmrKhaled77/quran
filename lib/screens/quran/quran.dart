@@ -111,7 +111,20 @@ class quranSccreen extends StatelessWidget {
                   ]),
                 ),
               ),
-            ),
+            ),appCubit.get(context).hasError?
+                 AlertDialog(
+        title: const Text('ALERT!!'),
+        content: const Text('pleas check your internet connection and try again '),
+        actions: <Widget>[
+
+        TextButton(
+         onPressed: () {} ,//Navigator.pop(context, 'OK'),
+        child: const Text('OK'),
+        ),
+        ],
+        )
+        :
+
             BuildQuranScreen(context)
 
           ],

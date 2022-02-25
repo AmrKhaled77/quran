@@ -15,12 +15,18 @@ class appCubit extends Cubit<ThemeStates>{
 bool isDark=false;
 bool hasData=false;
 
-void ChangeTheme(){
+void ChangeTheme({bool ISDARK}){
+  if(ISDARK!=null){
+    isDark=ISDARK;
+  }else
   isDark=!isDark;
-  emit(AppChangeThemeSTete());
+  cacheHelper.Putbool(key: 'isDark', value: isDark).then((value) => {
+  emit(AppChangeThemeSTete())
+  });
+
 }
 List<dynamic> chapters=[];
-
+bool hasError=false;
 void getChaptersData(){
 emit(quranGetDataLoding());
   DioHelper.getData(hedrs: {
@@ -37,6 +43,7 @@ emit(quranGetDataLoding());
     print(chapters[0]['name']);
     emit(quranGetDataSucsses());
   }).catchError((error){
+    hasError=true;
     emit(quranGetDataError());
     print(error.toString());
   });

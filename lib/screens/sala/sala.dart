@@ -16,7 +16,21 @@ class salaTimesScreen extends StatelessWidget {
     return BlocConsumer<appCubit, ThemeStates>(
         listener: (context, state) {},
         builder: (context, state) {
-          return Center(child: buildSalaScreen(context));
+          return Center(child:
+          appCubit.get(context).hasError?
+          AlertDialog(
+            title: const Text('ALERT!!'),
+            content: const Text('pleas check your internet connection and try again '),
+            actions: <Widget>[
+
+              TextButton(
+                onPressed: () {} ,//Navigator.pop(context, 'OK'),
+                child: const Text('OK'),
+              ),
+            ],
+          )
+              :
+          buildSalaScreen(context));
         });
 
 

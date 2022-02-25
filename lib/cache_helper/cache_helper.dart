@@ -39,4 +39,17 @@ static int GetInt({
 
   return  sharedPreferences.getInt(key);
 }
+static Future<bool> Putbool({
+  @required String key,
+  @required bool value,
+})async{
+
+  return await sharedPreferences.setBool(key, value);
+}
+static bool Getbool({
+  @required String key
+}){
+
+  return  sharedPreferences.getBool(key);
+}
 }

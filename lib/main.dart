@@ -15,22 +15,28 @@ void main()async {
   await cacheHelper.init();
   String suraName=cacheHelper.GetData(key: 'suraName');
   int  suraID=cacheHelper.GetInt(key: 'suraID');
+  bool isDark =cacheHelper.Getbool(key: 'isDark');
   runApp(MyApp(suraName,
-      suraID
+      suraID,isDark
   ));
 }
 
 class MyApp extends StatelessWidget {
   final String suraName;
   final int suraID;
-  MyApp(this.suraName,this.suraID);
+  final bool isDark;
+  MyApp(this.suraName,this.suraID,this.isDark);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
 
     return BlocProvider(
-        create: (BuildContext context) => appCubit()..getChaptersData()..getSalaTimes(),
+        create: (BuildContext context) => appCubit()..getChaptersData()..getSalaTimes()
+        ..ChangeTheme(
+           ISDARK: isDark
+        )
+        ,
 
         child:BlocConsumer<appCubit,ThemeStates>(
           listener: (context, state) {},
