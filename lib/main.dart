@@ -38,6 +38,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+
     return BlocProvider(
         create: (BuildContext context) => appCubit()..getChaptersData()..getSalaTimes()
         ..ChangeTheme(
@@ -55,16 +56,8 @@ class MyApp extends StatelessWidget {
             ]);
 
             return  MaterialApp(
-              localizationsDelegates: [
-                 AppLocalizations.delegate, // Add this line
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              supportedLocales: [
-                Locale('en', ''), // English, no country code
-                Locale('ar', ''), // Spanish, no country code
-              ],
+              localizationsDelegates: AppLocalizations.localizationsDelegates,
+              supportedLocales:AppLocalizations.supportedLocales,
 locale: appCubit.get(context).isArbic? Locale('ar', ''):Locale('en', ''),
               theme: ThemeData(
                 primaryColor: Colors.black,
@@ -125,3 +118,8 @@ locale: appCubit.get(context).isArbic? Locale('ar', ''):Locale('en', ''),
   }
 
 }
+
+
+
+
+

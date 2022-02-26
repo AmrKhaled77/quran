@@ -26,7 +26,7 @@ class _SebhaScreenState extends State<SebhaScreen> {
             alignment: Alignment.center,
             children: [
               Container(
-                height: MediaQuery.of(context).size.height * 0.35,
+                height: MediaQuery.of(context).size.height * 0.4,
                 child: Transform.rotate(
                   angle: currentAngle,
                   child: Image.asset(
@@ -93,7 +93,7 @@ class _SebhaScreenState extends State<SebhaScreen> {
                   ),
                 ),
                 child: Text(
-                  'CLICK',
+                  AppLocalizations.of(context).clik,
                   style: TextStyle(
                       color: Colors.white.withOpacity(0.9),
                       letterSpacing: 5,

@@ -4,11 +4,19 @@ import 'package:z/cubit/appCubit/appcubit.dart';
 import 'package:z/cubit/cubit.dart';
 import 'package:z/cubit/stats.dart';
 import 'package:z/screens/search/search_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    List<String> titles = [
+
+      AppLocalizations.of(context).sala,
+      AppLocalizations.of(context).sala,
+      AppLocalizations.of(context).qbla,
+      AppLocalizations.of(context).sebha,
+    ];
     return BlocProvider(
       create: (BuildContext context) => QuranCubit(),
       child: BlocConsumer<QuranCubit, QuranStates>(
@@ -59,8 +67,7 @@ class HomeScreen extends StatelessWidget {
                         })
                   ],
                   title: Text(
-                    QuranCubit.get(context)
-                        .titles[QuranCubit.get(context).currentIndex],
+                    titles[QuranCubit.get(context).currentIndex],
                     style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold,
                     color: appCubit.get(context).isDark?Colors.black:Colors.white
                     ),

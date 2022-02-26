@@ -22,13 +22,22 @@ class QuranCubit extends Cubit<QuranStates> {
     QublaScreen(),
     SebhaScreen(),
   ];
-  List<String> titles = [
-
-    "Quran",
-    "Sala",
-    "Qbla",
-    "Sebha",
-  ];
+  // List GetTitles(context){
+  //   return[
+  //     AppLocalizations.of(context).sala,
+  //   AppLocalizations.of(context).sala,
+  //   AppLocalizations.of(context).qbla,
+  //   AppLocalizations.of(context).sebha,
+  //   ];
+  // }
+  // List<String> T = [];
+  // List<String> titles = [
+  //
+  //   "Quran",
+  //   "Sala",
+  //   "Qbla",
+  //   "Sebha",
+  // ];
 
   void ChangeIndex(int index) {
     currentIndex = index;

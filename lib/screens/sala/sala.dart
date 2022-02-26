@@ -71,7 +71,7 @@ class salaTimesScreen extends StatelessWidget {
                   Column(
                     children: [
                       Text(
-                        'Date : ${appCubit.get(context).salaTimes[0]['date']}',
+                        '${AppLocalizations.of(context).date} : ${appCubit.get(context).salaTimes[0]['date']}',
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 10,
@@ -94,58 +94,61 @@ class salaTimesScreen extends StatelessWidget {
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 2.0),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 12,
-                      width: double.infinity,
-                    ),
-                    salaItem(
-                        context: context,
-                        Estring: 'Fajr',
-                        Tstring: '${appCubit.get(context).salaTimes[0]['fajr']}',
-                        Astring: 'الفجر'),
-                    SizedBox(
-                      height: 19,
-                    ),
-                    salaItem(
-                        context: context,
-                        Estring: 'Sunrise',
-                        Tstring: '${appCubit.get(context).salaTimes[0]['sunrise']}',
-                        Astring: 'الضحي'),
-                    SizedBox(
-                      height: 19,
-                    ),
-                    salaItem(
-                        context: context,
-                        Estring: 'Zuhr',
-                        Tstring: '${appCubit.get(context).salaTimes[0]['zuhr']}',
-                        Astring: 'الظهر'),
-                    SizedBox(
-                      height: 19,
-                    ),
-                    salaItem(
-                        context: context,
-                        Estring: 'Asr',
-                        Tstring: '${appCubit.get(context).salaTimes[0]['asr']}',
-                        Astring: 'العصر'),
-                    SizedBox(
-                      height: 19,
-                    ),
-                    salaItem(
-                        context: context,
-                        Estring: 'Maghrib',
-                        Tstring: '${appCubit.get(context).salaTimes[0]['maghrib']}',
-                        Astring: 'المغرب'),
-                    SizedBox(
-                      height: 19,
-                    ),
-                    salaItem(
-                        context: context,
-                        Estring: 'Isha',
-                        Tstring: '${appCubit.get(context).salaTimes[0]['isha']}',
-                        Astring: 'العشاء'),
-                  ],
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 12,
+                        width: double.infinity,
+                      ),
+                      salaItem(
+                          context: context,
+                          Estring: 'Fajr',
+                          Tstring: '${appCubit.get(context).salaTimes[0]['fajr']}',
+                          Astring: 'الفجر'),
+                      SizedBox(
+                        height: 19,
+                      ),
+                      salaItem(
+                          context: context,
+                          Estring: 'Sunrise',
+                          Tstring: '${appCubit.get(context).salaTimes[0]['sunrise']}',
+                          Astring: 'الضحي'),
+                      SizedBox(
+                        height: 19,
+                      ),
+                      salaItem(
+                          context: context,
+                          Estring: 'Zuhr',
+                          Tstring: '${appCubit.get(context).salaTimes[0]['zuhr']}',
+                          Astring: 'الظهر'),
+                      SizedBox(
+                        height: 19,
+                      ),
+                      salaItem(
+                          context: context,
+                          Estring: 'Asr',
+                          Tstring: '${appCubit.get(context).salaTimes[0]['asr']}',
+                          Astring: 'العصر'),
+                      SizedBox(
+                        height: 19,
+                      ),
+                      salaItem(
+                          context: context,
+                          Estring: 'Maghrib',
+                          Tstring: '${appCubit.get(context).salaTimes[0]['maghrib']}',
+                          Astring: 'المغرب'),
+                      SizedBox(
+                        height: 19,
+                      ),
+                      salaItem(
+                          context: context,
+                          Estring: 'Isha',
+                          Tstring: '${appCubit.get(context).salaTimes[0]['isha']}',
+                          Astring: 'العشاء'),
+
+                    ],
+                  ),
                 ),
               ),
             ),

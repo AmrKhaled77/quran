@@ -5,10 +5,7 @@ import 'package:z/screens/quran/reeding_screen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 Widget surahItem(context, chaptres) {
-  var StarColor=Colors.purple;
-  var idVersessColor=Colors.white;
-  var ChaptersEnglishColor=Colors.white;
-  var ChaptersArbicColor=Colors.purple;
+
   var numberVersessColor=appCubit.get(context).isDark?Colors.black:Colors.white30;
   return InkWell(
     onTap: () {
@@ -35,7 +32,7 @@ Widget surahItem(context, chaptres) {
     },
     child: Container(
       width: double.infinity,
-      height: MediaQuery.of(context).size.height * 0.122,
+      height: MediaQuery.of(context).size.height * 0.15,
       child: Row(
         children: [
           Padding(
@@ -43,10 +40,13 @@ Widget surahItem(context, chaptres) {
             child: Stack(
               alignment: Alignment.center,
               children: [
-                ImageIcon(
-                  AssetImage('assets/images/star.png'),
-                  color:Theme.of(context).primaryColor,
-                  size: 40,
+                Container(
+                  width: MediaQuery.of(context).size.height * 0.05,
+                  child: ImageIcon(
+                    AssetImage('assets/images/star.png'),
+                    color:Theme.of(context).primaryColor,
+                    size: 40,
+                  ),
                 ),
                 Text(
                   '${chaptres['id']}',
@@ -91,7 +91,7 @@ Widget surahItem(context, chaptres) {
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                   color: Theme.of(context).primaryColor),
-              textAlign: TextAlign.right,
+              textAlign: TextAlign.end,
 
             ),
           ),

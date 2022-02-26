@@ -7,8 +7,7 @@ import 'package:z/cubit/appCubit/appcubitstats.dart';
 import 'package:z/screens/quran/reeding_screen.dart';
 import 'package:z/screens/quran/suraitem.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-
+import 'package:flutter_localizations/flutter_localizations.dart';
 class quranSccreen extends StatelessWidget {
 
   @override
@@ -57,6 +56,7 @@ class quranSccreen extends StatelessWidget {
                         image: AssetImage('assets/images/lastread.png'),
                         fit: BoxFit.cover,
 
+
                       ),
                     ),
                     Padding(
@@ -65,7 +65,7 @@ class quranSccreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(
-                            height: 12,
+                            height: MediaQuery.of(context).size.height*0.02,
                           ),
                           Row(
                             children: [
@@ -76,7 +76,7 @@ class quranSccreen extends StatelessWidget {
                                 color: Theme.of(context).canvasColor,
                               ),
                               Text(
-                                'Last Read',
+                                AppLocalizations.of(context).helloWorld,
                                 style: TextStyle(
                                     color: Theme.of(context).canvasColor,
                                     fontWeight: FontWeight.bold,
@@ -85,7 +85,7 @@ class quranSccreen extends StatelessWidget {
                             ],
                           ),
                           SizedBox(
-                            height: 25,
+                            height: MediaQuery.of(context).size.height*0.001,
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 6.0),
@@ -97,7 +97,7 @@ class quranSccreen extends StatelessWidget {
                                         color:Theme.of(context).canvasColor,
                                         fontWeight: FontWeight.w700,
                                         fontSize: 18)),
-                                Text('SURAH NO: ${appCubit.get(context).currentSurah}',
+                                Text('${AppLocalizations.of(context).surahno}: ${appCubit.get(context).currentSurah}',
                                     style: TextStyle(
                                         color: Theme.of(context).canvasColor,
                                         fontWeight: FontWeight.w700,
@@ -113,13 +113,13 @@ class quranSccreen extends StatelessWidget {
               ),
             ),appCubit.get(context).hasError?
                  AlertDialog(
-        title: const Text('ALERT!!'),
-        content: const Text('pleas check your internet connection and try again '),
+        title:  Text(AppLocalizations.of(context).alertceck),
+        content:  Text(AppLocalizations.of(context).alert),
         actions: <Widget>[
 
         TextButton(
          onPressed: () {} ,//Navigator.pop(context, 'OK'),
-        child: const Text('OK'),
+        child:  Text(AppLocalizations.of(context).alertceck),
         ),
         ],
         )
