@@ -7,6 +7,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:z/cache_helper/cache_helper.dart';
 import 'package:z/dio_helpr/dio_helper.dart';
 import 'package:z/screens/homescreen.dart';
+import 'package:z/screens/on_boarding/on_boarding.dart';
 import 'cubit/appCubit/appcubit.dart';
 import 'cubit/appCubit/appcubitstats.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -78,7 +79,9 @@ locale: appCubit.get(context).isArbic? Locale('ar', ''):Locale('en', ''),
                     SizedBox(
                       height:200 ,
                     ),
-                    Image.asset("assets/images/icon.png"),
+                    Image.asset("assets/images/icon.png",
+                    fit: BoxFit.fill,
+                    ),
                     SizedBox(
                       height: 100,
                     ),
@@ -101,7 +104,7 @@ locale: appCubit.get(context).isArbic? Locale('ar', ''):Locale('en', ''),
                 splashIconSize: 1000,
                 splashTransition: SplashTransition.scaleTransition,
                 backgroundColor: appCubit.get(context).isDark?Colors.white:Colors.deepPurple,
-                nextScreen: HomeScreen(),
+                nextScreen: OnBording(),
               ),
               debugShowCheckedModeBanner: false,
 

@@ -20,9 +20,10 @@ bool hasData=false;
       isDark=ISARBICK;
     }else
       isArbic=!isArbic;
-    cacheHelper.Putbool(key: 'ISARBICK', value: isDark).then((value) => {
-      emit(AppChangeThemeSTete())
-    });
+    emit(AppChangeThemeSTete());
+    // cacheHelper.Putbool(key: 'ISARBICK', value: isDark).then((value) => {
+    //   emit(AppChangeThemeSTete())
+   // });
 
   }
 void ChangeTheme({bool ISDARK}){
