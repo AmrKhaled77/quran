@@ -13,8 +13,18 @@ class appCubit extends Cubit<ThemeStates>{
   static appCubit get(context) => BlocProvider.of(context);
 
 bool isDark=false;
+bool isArbic=false;
 bool hasData=false;
+  void ChangeLANG({bool ISARBICK}){
+    if(ISARBICK!=null){
+      isDark=ISARBICK;
+    }else
+      isArbic=!isArbic;
+    cacheHelper.Putbool(key: 'ISARBICK', value: isDark).then((value) => {
+      emit(AppChangeThemeSTete())
+    });
 
+  }
 void ChangeTheme({bool ISDARK}){
   if(ISDARK!=null){
     isDark=ISDARK;

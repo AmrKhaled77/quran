@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:z/cubit/appCubit/appcubit.dart';
 import 'package:z/screens/quran/reading_item.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ReadingScreen extends StatelessWidget {
   @override

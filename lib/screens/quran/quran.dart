@@ -4,9 +4,9 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:z/cubit/appCubit/appcubit.dart';
 import 'package:z/cubit/appCubit/appcubitstats.dart';
-import 'package:z/cubit/cubit.dart';
 import 'package:z/screens/quran/reeding_screen.dart';
 import 'package:z/screens/quran/suraitem.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
 class quranSccreen extends StatelessWidget {

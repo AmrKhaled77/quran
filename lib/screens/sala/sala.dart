@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:z/components/componants.dart';
 import 'package:z/cubit/appCubit/appcubit.dart';
 import 'package:z/cubit/appCubit/appcubitstats.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
 class salaTimesScreen extends StatelessWidget {

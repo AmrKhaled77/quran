@@ -4,6 +4,7 @@ import 'package:z/cubit/appCubit/appcubit.dart';
 import 'package:z/cubit/appCubit/appcubitstats.dart';
 import 'package:z/screens/quran/reading_item.dart';
 
+
 class SearchScreen extends StatelessWidget {
   var searchController=TextEditingController();
   @override

@@ -7,6 +7,7 @@ import 'package:z/screens/qubla/qubla.dart';
 import 'package:z/screens/quran/quran.dart';
 import 'package:z/screens/sala/sala.dart';
 import 'package:z/screens/sebha/sebha.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
 class QuranCubit extends Cubit<QuranStates> {
@@ -22,6 +23,7 @@ class QuranCubit extends Cubit<QuranStates> {
     SebhaScreen(),
   ];
   List<String> titles = [
+
     "Quran",
     "Sala",
     "Qbla",

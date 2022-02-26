@@ -31,13 +31,15 @@ class HomeScreen extends StatelessWidget {
                   backgroundColor: Colors.transparent,
                   elevation: 0,
                   centerTitle: true,
-                  // leading: IconButton(
-                  //   onPressed: () {},
-                  //   icon: Icon(
-                  //     Icons.settings_outlined,
-                  //     color:MYTHEMEDATA().IconsColor
-                  //   ),
-                  // ),
+                  leading: IconButton(
+                    onPressed: () {
+                      appCubit.get(context).ChangeLANG();
+                    },
+                    icon: Icon(
+                      Icons.language,
+                      color:Theme.of(context).canvasColor,
+                    ),
+                  ),
                   actions: [
                     IconButton(
                         icon: Icon(

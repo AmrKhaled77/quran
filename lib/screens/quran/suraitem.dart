@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:z/cubit/appCubit/appcubit.dart';
 import 'package:z/screens/quran/reeding_screen.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 Widget surahItem(context, chaptres) {
   var StarColor=Colors.purple;

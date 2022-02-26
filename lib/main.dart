@@ -3,11 +3,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:z/cache_helper/cache_helper.dart';
 import 'package:z/dio_helpr/dio_helper.dart';
 import 'package:z/screens/homescreen.dart';
 import 'cubit/appCubit/appcubit.dart';
 import 'cubit/appCubit/appcubitstats.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+
 
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,8 +20,9 @@ void main()async {
   String suraName=cacheHelper.GetData(key: 'suraName');
   int  suraID=cacheHelper.GetInt(key: 'suraID');
   bool isDark =cacheHelper.Getbool(key: 'isDark');
+  bool isarbic =cacheHelper.Getbool(key: 'ISARBICK');
   runApp(MyApp(suraName,
-      suraID,isDark
+      suraID,isDark,isarbic
   ));
 }
 
@@ -25,7 +30,9 @@ class MyApp extends StatelessWidget {
   final String suraName;
   final int suraID;
   final bool isDark;
-  MyApp(this.suraName,this.suraID,this.isDark);
+  final bool isarbic;
+  MyApp(this.suraName,this.suraID,this.isDark,
+      this.isarbic);
 
   // This widget is the root of your application.
   @override
@@ -35,8 +42,7 @@ class MyApp extends StatelessWidget {
         create: (BuildContext context) => appCubit()..getChaptersData()..getSalaTimes()
         ..ChangeTheme(
            ISDARK: isDark
-        )
-        ,
+        )..ChangeLANG(ISARBICK: isarbic),
 
         child:BlocConsumer<appCubit,ThemeStates>(
           listener: (context, state) {},
@@ -49,6 +55,17 @@ class MyApp extends StatelessWidget {
             ]);
 
             return  MaterialApp(
+              localizationsDelegates: [
+                 AppLocalizations.delegate, // Add this line
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              supportedLocales: [
+                Locale('en', ''), // English, no country code
+                Locale('ar', ''), // Spanish, no country code
+              ],
+locale: appCubit.get(context).isArbic? Locale('ar', ''):Locale('en', ''),
               theme: ThemeData(
                 primaryColor: Colors.black,
                 accentColor:Colors.white,
