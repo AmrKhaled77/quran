@@ -4,6 +4,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:intl/intl.dart';
 import 'package:z/cache_helper/cache_helper.dart';
 import 'package:z/dio_helpr/dio_helper.dart';
+import 'package:z/dio_helpr/radio_Dio.dart';
 import 'appcubitstats.dart';
 
 
@@ -51,7 +52,6 @@ emit(quranGetDataLoding());
 
     chapters=value.data['chapters'];
     hasData=!hasData;
-    print(chapters[0]['name']);
     emit(quranGetDataSucsses());
   }).catchError((error){
     hasError=true;
@@ -102,10 +102,7 @@ int total_pages;
     }
 
     ).then((value) {
-
       search =value.data['results'];
-
-      print(search[1]['text']);
       emit(quranGetDataSucsses());
     }).catchError((error){
       emit(quranGetDataError());
@@ -127,11 +124,8 @@ List<dynamic> salaTimes=[];
     }
 
     ).then((value) {
-
       salaTimes =value.data['times'];
       salaTimesHasData=!salaTimesHasData;
-
-      print(salaTimes[1]['times']);
       emit(quranGetDataSucsses());
     }).catchError((error){
       emit(quranGetDataError());
@@ -191,4 +185,22 @@ int totalPages;
   }
   String tspehTyp = 'سبحان الله';
   double taspeh = 0.0;
+  void GetSalaTimes(){
+    emit(quranGetDataLoding());
+    DioHelper1.getData(path: 'v2/times/day.json', query: {
+      'city':'cairo',
+      'date':'2022-02-25'
+    },hedrs: {
+      'lang':'ar'
+    }
+
+    ).then((value) {
+      salaTimes=value.data['results']['datetime'];
+      print(salaTimes[0]['times']['Fajr']);
+      emit(quranGetDataSucsses());
+    }).catchError((error){
+      emit(quranGetDataError());
+      print(error.toString());
+    });
+  }
 }

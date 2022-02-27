@@ -7,15 +7,16 @@ class DioHelper1{
   static inIt(){
     dio=Dio(
         BaseOptions(
-          baseUrl: 'https://api.mp3quran.net/',
+          baseUrl: 'https://api.pray.zone/',
           receiveDataWhenStatusError: true,
         )
     );
   }
   static Future<Response> getData({
     @required String path,
-
+    @required Map<String,dynamic> query,
+     Map<String,dynamic> hedrs,
   })async{
-    return await dio.get(path);
+    return await dio.get(path,queryParameters: query,);
   }
 }

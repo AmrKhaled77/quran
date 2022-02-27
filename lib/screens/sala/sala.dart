@@ -71,7 +71,8 @@ class salaTimesScreen extends StatelessWidget {
                   Column(
                     children: [
                       Text(
-                        '${AppLocalizations.of(context).date} : ${appCubit.get(context).salaTimes[0]['date']}',
+                   //     ' : ${appCubit.get(context).salaTimes[0]['date']}',
+                        'date',
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 10,
