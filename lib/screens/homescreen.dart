@@ -34,11 +34,7 @@ class HomeScreen extends StatelessWidget {
                 fit: BoxFit.fill,
               ),
               Scaffold(
-                floatingActionButton: FloatingActionButton(
-                  onPressed: (){
-                    appCubit.get(context).GetSalaTimes();
-                  },
-                ),
+
                 backgroundColor: Colors.transparent,
                 appBar: AppBar(
                   backgroundColor: Colors.transparent,

@@ -9,7 +9,7 @@ import 'package:z/screens/on_boarding/on_boarding.dart';
 import 'cubit/appCubit/appcubit.dart';
 import 'cubit/appCubit/appcubitstats.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'dio_helpr/radio_Dio.dart';
+import 'dio_helpr/salaTimes_Dio.dart';
 
 
 

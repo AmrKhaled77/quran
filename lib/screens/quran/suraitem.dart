@@ -9,18 +9,18 @@ Widget surahItem(context, chaptres) {
   var numberVersessColor=appCubit.get(context).isDark?Colors.black:Colors.white30;
   return InkWell(
     onTap: () {
-      for(int i=1;i<30;i++){
+
         appCubit.get(context).getChapterVerses(
             chapter: chaptres['id'],
-            page: i
+
         );
-      }
+
       appCubit.get(context).verses.clear();
       Navigator.push(context, MaterialPageRoute(builder:(context)=>ReadingScreen() ));
 // appCubit.get(context).getChapterVerses( chapter: chaptres['id']);
       appCubit.get(context).currentSurah = chaptres['id'];
       appCubit.get(context).currentSurahName
-      =appCubit.get(context).chapters[appCubit.get(context).currentSurah - 1]['name'];
+      =appCubit.get(context).chapters[appCubit.get(context).currentSurah - 1]['name_simple'];
       appCubit.get(context).saveDataCache
         (context, appCubit.get(context).currentSurahName, 'suraName');
       appCubit.get(context).saveInt(context,appCubit.get(context).currentSurah , 'suraID');
@@ -65,7 +65,7 @@ Widget surahItem(context, chaptres) {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '${chaptres['name'].toUpperCase()}',
+                  '${chaptres['name_simple'].toUpperCase()}',
                   style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -75,7 +75,7 @@ Widget surahItem(context, chaptres) {
                   height: 3,
                 ),
                 Text(
-                  '${chaptres['revelation_place'].toUpperCase()} ● ${chaptres['verses']} VERSES',
+                  '${chaptres['revelation_place'].toUpperCase()} ● ${chaptres['verses_count']} VERSES',
                   style: TextStyle(
                       fontWeight: FontWeight.w500, color:numberVersessColor),
                 ),
@@ -85,7 +85,7 @@ Widget surahItem(context, chaptres) {
           Container(
             width: MediaQuery.of(context).size.width * 0.31,
             child: Text(
-              '${chaptres['arabic_name'].toUpperCase()}',
+              '${chaptres['name_arabic'].toUpperCase()}',
               style: TextStyle(
                   fontFamily: 'Amiri',
                   fontSize: 20,

@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:intl/intl.dart';
 import 'package:z/cache_helper/cache_helper.dart';
 import 'package:z/dio_helpr/dio_helper.dart';
-import 'package:z/dio_helpr/radio_Dio.dart';
+import 'package:z/dio_helpr/salaTimes_Dio.dart';
 import 'appcubitstats.dart';
 
 
@@ -27,6 +26,7 @@ bool hasData=false;
    // });
 
   }
+
 void ChangeTheme({bool ISDARK}){
   if(ISDARK!=null){
     isDark=ISDARK;
@@ -37,49 +37,44 @@ void ChangeTheme({bool ISDARK}){
   });
 
 }
+
 List<dynamic> chapters=[];
 bool hasError=false;
-void getChaptersData(){
-emit(quranGetDataLoding());
-  DioHelper.getData(hedrs: {
-    'Content-Type':'application/json',
-    'Authorization':'Bearer YjcxZGRiNTAtMTZmYS00ZTI5LTkwNTMtMTQwZTI1MDE4NGY4',
-  },path: 'v1/quran/Chapters', query: {
-    'language':'eg',
-  }
-
-  ).then((value) {
-
-    chapters=value.data['chapters'];
-    hasData=!hasData;
-    emit(quranGetDataSucsses());
-  }).catchError((error){
-    hasError=true;
-    emit(quranGetDataError());
-    print(error.toString());
-  });
-}
-bool hasDat=false;
-int total_pages;
-  List<dynamic> verses=[];
-  void getChapterVerses({
-  @required int chapter,
-    int  page=1,
-}){
+  void getChaptersData(){
     emit(quranGetDataLoding());
-    DioHelper.getData(hedrs: {
-      'Content-Type':'application/json',
-      'Authorization':'Bearer YjcxZGRiNTAtMTZmYS00ZTI5LTkwNTMtMTQwZTI1MDE4NGY4',
-    },path: 'v1/quran/Verses', query: {
-      'chapter':chapter,
-      'page':page
-    }
-
+    DioHelper.getData(path: 'api/v4/chapters',
+        query: {
+          'language':"en"
+        }
     ).then((value) {
 
-      verses.addAll(value.data['verses']);
-      verses.sort((a, b) => a['number'].compareTo(b['number']));
-      hasDat=!hasData;
+      chapters=value.data['chapters'];
+      hasData=!hasData;
+      emit(quranGetDataSucsses());
+    }).catchError((error){
+      emit(quranGetDataError());
+      print(error.toString());
+    });
+  }
+
+bool hasDat=false;
+int total_pages;
+
+  List<dynamic> verses=[];
+  void getChapterVerses({
+    @required int chapter,
+    int  page=1,
+  }){
+    emit(quranGetDataLoding());
+    DioHelper.getData(path: 'api/v4/quran/verses/indopak',
+        query: {
+          'chapter_number':chapter
+        }
+
+    ).then((value) {
+      verses=value.data['verses'];
+      // verses.sort((a, b) => a['number'].compareTo(b['number']));
+      // hasDat=!hasData;
 
 
       emit(quranGetDataSucsses());
@@ -89,20 +84,20 @@ int total_pages;
     });
   }
   int lastRead=3;
+
   List<dynamic> search=[];
   void getSearchVerses(String Search ){
     emit(quranGetDataLoding());
-    DioHelper.getData(hedrs: {
-      'Content-Type':'application/json',
-      'Authorization':'Bearer YjcxZGRiNTAtMTZmYS00ZTI5LTkwNTMtMTQwZTI1MDE4NGY4',
-    },path: 'v1/quran/Search', query: {
-      'query':Search,
-
-
-    }
+    DioHelper.getData(path: 'api/v4/search',
+        query: {
+          'q':Search
+        }
 
     ).then((value) {
-      search =value.data['results'];
+
+      search =value.data['search']['results'];
+
+      print(search[1]['text']);
       emit(quranGetDataSucsses());
     }).catchError((error){
       emit(quranGetDataError());
@@ -114,17 +109,16 @@ int total_pages;
 List<dynamic> salaTimes=[];
   void getSalaTimes(){
     emit(quranGetDataLoding());
-    DioHelper.getData(hedrs: {
-      'Content-Type':'application/json',
-      'Authorization':'Bearer YjcxZGRiNTAtMTZmYS00ZTI5LTkwNTMtMTQwZTI1MDE4NGY4',
-    },path: 'v1/prayer/Times', query: {
-      'location':'cairo',
+    DioHelper1.getData(path: 'v2/times/day.json', query: {
+      'city':'cairo',
+      'date':'2022-02-25'
 
 
     }
 
     ).then((value) {
-      salaTimes =value.data['times'];
+      salaTimes =value.data['results']['datetime'];
+      print(salaTimes[0]['times']['Fajr']);
       salaTimesHasData=!salaTimesHasData;
       emit(quranGetDataSucsses());
     }).catchError((error){
@@ -134,9 +128,6 @@ List<dynamic> salaTimes=[];
   }
 
 
-
-
-
    String todayDate() {
     var now = new DateTime.now();
     String formattedTime = DateFormat("h:mm").format(now);
@@ -144,6 +135,7 @@ List<dynamic> salaTimes=[];
 
 
   }
+
   int currentSurah = 1;
   String currentSurahName='a';
 
@@ -152,55 +144,13 @@ List<dynamic> salaTimes=[];
     emit(SavedataState());
 
   }
-  void saveInt(context,int value,String key)
-  {
+  void saveInt(context,int value,String key) {
     cacheHelper.PutInt(key: key, value: value);
     emit(SavedataState());
   }
 
-int totalPages;
-  void getTotalPages({
-    @required int chapter,
-    int  page=1,
-  }){
-    emit(quranGetDataLoding());
-    DioHelper.getData(hedrs: {
-      'Content-Type':'application/json',
-      'Authorization':'Bearer YjcxZGRiNTAtMTZmYS00ZTI5LTkwNTMtMTQwZTI1MDE4NGY4',
-    },path: 'v1/quran/Verses', query: {
-      'chapter':chapter,
-      'page':page
-    }
 
-    ).then((value) {
-
-      totalPages=value.data['total_pages'];
-
-
-      emit(quranGetDataSucsses());
-    }).catchError((error){
-      emit(quranGetDataError());
-      print(error.toString());
-    });
-  }
   String tspehTyp = 'سبحان الله';
   double taspeh = 0.0;
-  void GetSalaTimes(){
-    emit(quranGetDataLoding());
-    DioHelper1.getData(path: 'v2/times/day.json', query: {
-      'city':'cairo',
-      'date':'2022-02-25'
-    },hedrs: {
-      'lang':'ar'
-    }
 
-    ).then((value) {
-      salaTimes=value.data['results']['datetime'];
-      print(salaTimes[0]['times']['Fajr']);
-      emit(quranGetDataSucsses());
-    }).catchError((error){
-      emit(quranGetDataError());
-      print(error.toString());
-    });
-  }
 }

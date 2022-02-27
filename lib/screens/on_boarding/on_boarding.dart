@@ -51,13 +51,11 @@ class _OnBordingState extends State<OnBording> {
                   if(index==bording.length-1){
                     setState(() {
                       isLast=true;
-                      print('last');
                     });
 
                   }else{
                     setState(() {
                       isLast=false;
-                      print('not last');
                     });
 
                   }

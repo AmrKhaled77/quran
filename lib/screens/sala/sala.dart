@@ -71,8 +71,7 @@ class salaTimesScreen extends StatelessWidget {
                   Column(
                     children: [
                       Text(
-                   //     ' : ${appCubit.get(context).salaTimes[0]['date']}',
-                        'date',
+                        '${appCubit.get(context).salaTimes[0]['date']['gregorian']}',
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 10,
@@ -105,7 +104,7 @@ class salaTimesScreen extends StatelessWidget {
                       salaItem(
                           context: context,
                           Estring: 'Fajr',
-                          Tstring: '${appCubit.get(context).salaTimes[0]['fajr']}',
+                          Tstring: '${appCubit.get(context).salaTimes[0]['times']['Fajr']}',
                           Astring: 'الفجر'),
                       SizedBox(
                         height: 19,
@@ -113,7 +112,7 @@ class salaTimesScreen extends StatelessWidget {
                       salaItem(
                           context: context,
                           Estring: 'Sunrise',
-                          Tstring: '${appCubit.get(context).salaTimes[0]['sunrise']}',
+                          Tstring: '${appCubit.get(context).salaTimes[0]['times']['Maghrib']}',
                           Astring: 'الضحي'),
                       SizedBox(
                         height: 19,
@@ -121,7 +120,7 @@ class salaTimesScreen extends StatelessWidget {
                       salaItem(
                           context: context,
                           Estring: 'Zuhr',
-                          Tstring: '${appCubit.get(context).salaTimes[0]['zuhr']}',
+                          Tstring: '${appCubit.get(context).salaTimes[0]['times']['Dhuhr']}',
                           Astring: 'الظهر'),
                       SizedBox(
                         height: 19,
@@ -129,7 +128,7 @@ class salaTimesScreen extends StatelessWidget {
                       salaItem(
                           context: context,
                           Estring: 'Asr',
-                          Tstring: '${appCubit.get(context).salaTimes[0]['asr']}',
+                          Tstring: '${appCubit.get(context).salaTimes[0]['times']['Asr']}',
                           Astring: 'العصر'),
                       SizedBox(
                         height: 19,
@@ -137,7 +136,7 @@ class salaTimesScreen extends StatelessWidget {
                       salaItem(
                           context: context,
                           Estring: 'Maghrib',
-                          Tstring: '${appCubit.get(context).salaTimes[0]['maghrib']}',
+                          Tstring: '${appCubit.get(context).salaTimes[0]['times']['Asr']}',
                           Astring: 'المغرب'),
                       SizedBox(
                         height: 19,
@@ -145,7 +144,7 @@ class salaTimesScreen extends StatelessWidget {
                       salaItem(
                           context: context,
                           Estring: 'Isha',
-                          Tstring: '${appCubit.get(context).salaTimes[0]['isha']}',
+                          Tstring: '${appCubit.get(context).salaTimes[0]['times']['Isha']}',
                           Astring: 'العشاء'),
 
                     ],
