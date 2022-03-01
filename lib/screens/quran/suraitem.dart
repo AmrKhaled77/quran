@@ -5,30 +5,27 @@ import 'package:z/screens/quran/reeding_screen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 Widget surahItem(context, chaptres) {
-
-  var numberVersessColor=appCubit.get(context).isDark?Colors.black:Colors.white30;
+  var numberVersessColor =
+      appCubit.get(context).isDark ? Colors.black : Colors.white30;
   return InkWell(
     onTap: () {
-
-        appCubit.get(context).getChapterVerses(
+      appCubit.get(context).getChapterVerses(
             chapter: chaptres['id'],
-
-        );
+          );
 
       appCubit.get(context).verses.clear();
-      Navigator.push(context, MaterialPageRoute(builder:(context)=>ReadingScreen() ));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => ReadingScreen()));
 // appCubit.get(context).getChapterVerses( chapter: chaptres['id']);
       appCubit.get(context).currentSurah = chaptres['id'];
-      appCubit.get(context).currentSurahName
-      =appCubit.get(context).chapters[appCubit.get(context).currentSurah - 1]['name_simple'];
-      appCubit.get(context).saveDataCache
-        (context, appCubit.get(context).currentSurahName, 'suraName');
-      appCubit.get(context).saveInt(context,appCubit.get(context).currentSurah , 'suraID');
-
-
-
-
-
+      appCubit.get(context).currentSurahName = appCubit
+          .get(context)
+          .chapters[appCubit.get(context).currentSurah - 1]['name_simple'];
+      appCubit.get(context).saveDataCache(
+          context, appCubit.get(context).currentSurahName, 'suraName');
+      appCubit
+          .get(context)
+          .saveInt(context, appCubit.get(context).currentSurah, 'suraID');
     },
     child: Container(
       width: double.infinity,
@@ -44,7 +41,7 @@ Widget surahItem(context, chaptres) {
                   width: MediaQuery.of(context).size.height * 0.05,
                   child: ImageIcon(
                     AssetImage('assets/images/star.png'),
-                    color:Theme.of(context).primaryColor,
+                    color: Theme.of(context).primaryColor,
                     size: 40,
                   ),
                 ),
@@ -52,7 +49,7 @@ Widget surahItem(context, chaptres) {
                   '${chaptres['id']}',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color:  Theme.of(context).canvasColor,
+                      color: Theme.of(context).canvasColor,
                       fontSize: 12),
                 ),
               ],
@@ -69,7 +66,7 @@ Widget surahItem(context, chaptres) {
                   style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
-                      color:  Theme.of(context).canvasColor),
+                      color: Theme.of(context).canvasColor),
                 ),
                 SizedBox(
                   height: 3,
@@ -77,7 +74,7 @@ Widget surahItem(context, chaptres) {
                 Text(
                   '${chaptres['revelation_place'].toUpperCase()} ● ${chaptres['verses_count']} VERSES',
                   style: TextStyle(
-                      fontWeight: FontWeight.w500, color:numberVersessColor),
+                      fontWeight: FontWeight.w500, color: numberVersessColor),
                 ),
               ],
             ),
@@ -92,7 +89,6 @@ Widget surahItem(context, chaptres) {
                   fontWeight: FontWeight.bold,
                   color: Theme.of(context).primaryColor),
               textAlign: TextAlign.end,
-
             ),
           ),
         ],

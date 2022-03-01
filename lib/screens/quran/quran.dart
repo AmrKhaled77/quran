@@ -8,34 +8,29 @@ import 'package:z/screens/quran/reeding_screen.dart';
 import 'package:z/screens/quran/suraitem.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-class quranSccreen extends StatelessWidget {
 
+class quranSccreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var lastReadColor=appCubit.get(context).isDark?Colors.black:Colors.white;
-    return BlocConsumer<appCubit,ThemeStates>(
-      listener:(context,state){},
-      builder:(context,state){
-        return  Column(
+    var lastReadColor =
+        appCubit.get(context).isDark ? Colors.black : Colors.white;
+    return BlocConsumer<appCubit, ThemeStates>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return Column(
           children: [
             InkWell(
               onTap: () {
-
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => ReadingScreen()));
-                  // appCubit.get(context).getChapterVerses(
-                  //   chapter: appCubit.get(context).currentSurah,
-                  // );
-                  for(int i=1;i<30;i++){
-                    appCubit.get(context).getChapterVerses(
-                      chapter: appCubit.get(context).currentSurah,
-                      page: i
-                    );
-                  }
-                  appCubit.get(context).verses.clear();
-
-
-
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ReadingScreen()));
+                // appCubit.get(context).getChapterVerses(
+                //   chapter: appCubit.get(context).currentSurah,
+                // );
+                for (int i = 1; i < 30; i++) {
+                  appCubit.get(context).getChapterVerses(
+                      chapter: appCubit.get(context).currentSurah, page: i);
+                }
+                appCubit.get(context).verses.clear();
               },
               child: Padding(
                 padding: const EdgeInsets.only(
@@ -53,10 +48,10 @@ class quranSccreen extends StatelessWidget {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(15),
                       child: Image(
-                        image: AssetImage('assets/images/lastread.png'),
+                        image: appCubit.get(context).isArbic
+                            ? AssetImage('assets/images/Background.png')
+                            : AssetImage('assets/images/lastread.png'),
                         fit: BoxFit.cover,
-
-
                       ),
                     ),
                     Padding(
@@ -65,7 +60,7 @@ class quranSccreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(
-                            height: MediaQuery.of(context).size.height*0.02,
+                            height: MediaQuery.of(context).size.height * 0.02,
                           ),
                           Row(
                             children: [
@@ -85,7 +80,7 @@ class quranSccreen extends StatelessWidget {
                             ],
                           ),
                           SizedBox(
-                            height: MediaQuery.of(context).size.height*0.001,
+                            height: MediaQuery.of(context).size.height * 0.001,
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 6.0),
@@ -94,10 +89,11 @@ class quranSccreen extends StatelessWidget {
                               children: [
                                 Text('${GetlastRead(context)}',
                                     style: TextStyle(
-                                        color:Theme.of(context).canvasColor,
+                                        color: Theme.of(context).canvasColor,
                                         fontWeight: FontWeight.w700,
                                         fontSize: 18)),
-                                Text('${AppLocalizations.of(context).surahno}: ${appCubit.get(context).currentSurah}',
+                                Text(
+                                    '${AppLocalizations.of(context).surahno}: ${appCubit.get(context).currentSurah}',
                                     style: TextStyle(
                                         color: Theme.of(context).canvasColor,
                                         fontWeight: FontWeight.w700,
@@ -111,45 +107,37 @@ class quranSccreen extends StatelessWidget {
                   ]),
                 ),
               ),
-            ),appCubit.get(context).hasError?
-                 AlertDialog(
-        title:  Text(AppLocalizations.of(context).alertceck),
-        content:  Text(AppLocalizations.of(context).alert),
-        actions: <Widget>[
-
-        TextButton(
-         onPressed: () {} ,//Navigator.pop(context, 'OK'),
-        child:  Text(AppLocalizations.of(context).alertceck),
-        ),
-        ],
-        )
-        :
-
-            BuildQuranScreen(context)
-
+            ),
+            appCubit.get(context).hasError
+                ? AlertDialog(
+                    title: Text(AppLocalizations.of(context).alertceck),
+                    content: Text(AppLocalizations.of(context).alert),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () {}, //Navigator.pop(context, 'OK'),
+                        child: Text(AppLocalizations.of(context).alertceck),
+                      ),
+                    ],
+                  )
+                : BuildQuranScreen(context)
           ],
         );
       },
-
     );
-
-
-
   }
-  Widget BuildQuranScreen(context){
-    if(appCubit.get(context).hasData ==false){
+
+  Widget BuildQuranScreen(context) {
+    if (appCubit.get(context).hasData == false) {
       return Center(
         child: CircularProgressIndicator(),
-
       );
-
-    }else{
+    } else {
       print(appCubit.get(context).lastRead);
-      return  Expanded(
+      return Expanded(
         child: ListView.separated(
             physics: BouncingScrollPhysics(),
             itemBuilder: (context, index) {
-              return surahItem(context,appCubit.get(context).chapters[index]);
+              return surahItem(context, appCubit.get(context).chapters[index]);
             },
             separatorBuilder: (context, index) {
               return Padding(
@@ -164,10 +152,11 @@ class quranSccreen extends StatelessWidget {
       );
     }
   }
-  String GetlastRead(context){
-    if(appCubit.get(context).currentSurahName==null)
-      {return '';}
-    else{
+
+  String GetlastRead(context) {
+    if (appCubit.get(context).currentSurahName == null) {
+      return '';
+    } else {
       return appCubit.get(context).currentSurahName;
     }
   }

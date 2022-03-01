@@ -9,7 +9,6 @@ import 'package:z/screens/sala/sala.dart';
 import 'package:z/screens/sebha/sebha.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-
 class QuranCubit extends Cubit<QuranStates> {
   QuranCubit() : super(QuranIniialState());
 
@@ -43,11 +42,4 @@ class QuranCubit extends Cubit<QuranStates> {
     currentIndex = index;
     emit(AppChangeBottomNavBarSTete());
   }
-
-
 }
-
-
-
-
-

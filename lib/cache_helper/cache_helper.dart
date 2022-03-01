@@ -1,55 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class cacheHelper{
+class cacheHelper {
+  static SharedPreferences sharedPreferences;
 
-static SharedPreferences sharedPreferences;
+  static init() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+  }
+  static Future<bool> saveData({
+    @required String key,
+    @required dynamic value,
+  }) async {
+    if (value is String) return await sharedPreferences.setString(key, value);
+    if (value is int) return await sharedPreferences.setInt(key, value);
+    if (value is bool) return await sharedPreferences.setBool(key, value);
+    return await sharedPreferences.setDouble(key, value);
+  }
 
-static init()async{
-  sharedPreferences= await SharedPreferences.getInstance();
-
-}
- static Future<bool> PutData({
-  @required String key,
-  @required String value,
-})async{
-  
-   return await sharedPreferences.setString(key, value);
-}
-
-
-static String GetData({
-  @required String key
-}){
-
-  return  sharedPreferences.getString(key);
-}
-
-
-static Future<bool> PutInt({
-  @required String key,
-  @required int value,
-})async{
-
-  return await sharedPreferences.setInt(key, value);
-}
-static int GetInt({
-  @required String key
-}){
-
-  return  sharedPreferences.getInt(key);
-}
-static Future<bool> Putbool({
-  @required String key,
-  @required bool value,
-})async{
-
-  return await sharedPreferences.setBool(key, value);
-}
-static bool Getbool({
-  @required String key
-}){
-
-  return  sharedPreferences.getBool(key);
-}
+  static dynamic getdata({
+    @required String key,
+  }) {
+    return sharedPreferences.get(key);
+  }
 }

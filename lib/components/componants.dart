@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-
 Widget salaItem(
     {@required context,
-      @required String Estring,
-      @required String Tstring,
-      @required String Astring}) {
+    @required String Estring,
+    @required String Tstring,
+    @required String Astring}) {
   return Container(
     width: double.infinity,
     height: MediaQuery.of(context).size.height * 0.07,

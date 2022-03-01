@@ -16,7 +16,7 @@ class QiblaCompass extends StatefulWidget {
 
 class _QiblaCompassState extends State<QiblaCompass> {
   final _locationStreamController =
-  StreamController<LocationStatus>.broadcast();
+      StreamController<LocationStatus>.broadcast();
 
   get stream => _locationStreamController.stream;
 
@@ -52,11 +52,11 @@ class _QiblaCompassState extends State<QiblaCompass> {
                   error: "Location service Denied Forever !",
                   callback: _checkLocationStatus,
                 );
-            // case GeolocationStatus.unknown:
-            //   return LocationErrorWidget(
-            //     error: "Unknown Location service error",
-            //     callback: _checkLocationStatus,
-            //   );
+              // case GeolocationStatus.unknown:
+              //   return LocationErrorWidget(
+              //     error: "Unknown Location service error",
+              //     callback: _checkLocationStatus,
+              //   );
               default:
                 return Container();
             }
@@ -115,7 +115,7 @@ class QiblahCompassWidget extends StatelessWidget {
               child: SvgPicture.asset('assets/images/5.svg', // compass
                   color: _platformBrightness == Brightness.dark
                       ? Theme.of(context).primaryColor
-                      :Theme.of(context).primaryColor),
+                      : Theme.of(context).primaryColor),
             ),
             _kaabaSvg,
             SvgPicture.asset('assets/images/3.svg', //needle
@@ -125,11 +125,14 @@ class QiblahCompassWidget extends StatelessWidget {
             Align(
               alignment: Alignment.bottomCenter,
               child: Text(
-                "Align both arrow head\nDo not put device close to metal object.\nCalibrate the compass eveytime you use it.",
+                appCubit.get(context).isArbic
+                    ? 'لا تضع الجهاز بالقرب من كائن معدني قم بمعايرة البوصلة في أي وقت تستخدمه'
+                    : "Align both arrow head\nDo not put device close to metal object.\nCalibrate the compass eveytime you use it.",
                 textAlign: TextAlign.center,
-                style: TextStyle(color: appCubit.get(context).isDark?Colors.black:
-                Colors.grey
-                ),
+                style: TextStyle(
+                    color: appCubit.get(context).isDark
+                        ? Colors.black
+                        : Colors.grey),
               ),
             )
           ],

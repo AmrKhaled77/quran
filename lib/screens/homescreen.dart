@@ -6,13 +6,11 @@ import 'package:z/cubit/stats.dart';
 import 'package:z/screens/search/search_screen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<String> titles = [
-
-      AppLocalizations.of(context).sala,
+      appCubit.get(context).isArbic ? 'القران الكريم' : 'quran',
       AppLocalizations.of(context).sala,
       AppLocalizations.of(context).qbla,
       AppLocalizations.of(context).sebha,
@@ -26,15 +24,14 @@ class HomeScreen extends StatelessWidget {
             alignment: Alignment.topCenter,
             children: [
               Image(
-                image: appCubit.get(context).isDark?
-                AssetImage('assets/images/backgroundupperdraw.jpg'):
-                AssetImage('assets/images/backgroundupperdraw.png'),
+                image: appCubit.get(context).isDark
+                    ? AssetImage('assets/images/backgroundupperdraw.jpg')
+                    : AssetImage('assets/images/backgroundupperdraw.png'),
                 width: double.infinity,
                 height: double.infinity,
                 fit: BoxFit.fill,
               ),
               Scaffold(
-
                 backgroundColor: Colors.transparent,
                 appBar: AppBar(
                   backgroundColor: Colors.transparent,
@@ -42,11 +39,11 @@ class HomeScreen extends StatelessWidget {
                   centerTitle: true,
                   leading: IconButton(
                     onPressed: () {
-                      appCubit.get(context).ChangeLANG();
+                      appCubit.get(context).ChangeLANG(fromCache: null);
                     },
                     icon: Icon(
                       Icons.language,
-                      color:Theme.of(context).canvasColor,
+                      color: Theme.of(context).canvasColor,
                     ),
                   ),
                   actions: [
@@ -56,22 +53,28 @@ class HomeScreen extends StatelessWidget {
                           color: Theme.of(context).canvasColor,
                         ),
                         onPressed: () {
-                          appCubit.get(context).ChangeTheme();
+                          appCubit.get(context).changeTheme(fromCache: null);
                         }),
                     IconButton(
                         icon: Icon(
                           Icons.search,
-                          color:Theme.of(context).canvasColor,
+                          color: Theme.of(context).canvasColor,
                         ),
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder:(context)=>SearchScreen() ));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SearchScreen()));
                         })
                   ],
                   title: Text(
                     titles[QuranCubit.get(context).currentIndex],
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold,
-                    color: appCubit.get(context).isDark?Colors.black:Colors.white
-                    ),
+                    style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: appCubit.get(context).isDark
+                            ? Colors.black
+                            : Colors.white),
                   ),
                 ),
                 body: QuranCubit.get(context)
@@ -83,9 +86,9 @@ class HomeScreen extends StatelessWidget {
                   },
                   type: BottomNavigationBarType.fixed,
                   backgroundColor: Theme.of(context).accentColor,
-                  unselectedIconTheme: IconThemeData(color: Theme.of(context).canvasColor),
-                  selectedIconTheme: IconThemeData(color: Colors.deepPurple
-                  ),
+                  unselectedIconTheme:
+                      IconThemeData(color: Theme.of(context).canvasColor),
+                  selectedIconTheme: IconThemeData(color: Colors.deepPurple),
                   iconSize: 30,
                   items: [
                     BottomNavigationBarItem(
@@ -96,7 +99,7 @@ class HomeScreen extends StatelessWidget {
                         label: ""),
                     BottomNavigationBarItem(
                         icon:
-                        ImageIcon(AssetImage('assets/images/compass.png')),
+                            ImageIcon(AssetImage('assets/images/compass.png')),
                         label: ""),
                     BottomNavigationBarItem(
                         icon: ImageIcon(AssetImage('assets/images/beads.png')),

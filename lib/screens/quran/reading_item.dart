@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-
-Widget readingItem(verses,Color color) {
-  String verss=verses['verse_key'];
-  List versess=verss.split(':');
+Widget readingItem(verses, Color color) {
+  String verss = verses['verse_key'];
+  List versess = verss.split(':');
   return Padding(
     padding: const EdgeInsets.all(14.0),
     child: Text(
@@ -11,7 +10,7 @@ Widget readingItem(verses,Color color) {
       textAlign: TextAlign.right,
       textDirection: TextDirection.rtl,
       style: TextStyle(
-          color:color,
+          color: color,
           fontSize: 22,
           fontWeight: FontWeight.bold,
           fontStyle: FontStyle.italic,
@@ -20,15 +19,9 @@ Widget readingItem(verses,Color color) {
           wordSpacing: 1,
           inherit: false,
           decorationThickness: 2,
-
-
-          shadows: [Shadow(
-              offset: Offset.infinite,
-              color: color
-          )],
+          shadows: [Shadow(offset: Offset.infinite, color: color)],
           textBaseline: TextBaseline.ideographic,
           fontFamily: 'Amiri'),
-
     ),
   );
 }

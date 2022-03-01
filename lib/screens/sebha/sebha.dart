@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:z/cubit/appCubit/appcubit.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -36,21 +35,51 @@ class _SebhaScreenState extends State<SebhaScreen> {
                   ),
                 ),
               ),
-              Container(
-                width: MediaQuery.of(context).size.width * 0.5,
-                height: MediaQuery.of(context).size.height * 0.075,
-                child: Center(
-                  child: Text(
-                    appCubit.get(context).tspehTyp,
+              InkWell(
+                onTap: (){
+                  if(duration==0){
+                    setState(() {
+                      appCubit.get(context).taspeh = 0.0;
+                      appCubit.get(context).tspehTyp = 'الحمد لله ';
+                      duration++;
 
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: Theme.of(context).canvasColor,
-                        fontSize: 30,
-                        fontFamily: 'Amiri',
-                        fontWeight: FontWeight.bold),
+                    });
+                  }else if(duration==1){
+                    setState(() {
+                      appCubit.get(context).taspeh = 0.0;
+                      appCubit.get(context).tspehTyp = ' الله اكبر';
+                      duration++;
+                    });
+                  }else if(duration==2){
+                    setState(() {
+                      appCubit.get(context).taspeh = 0.0;
+                      appCubit.get(context).tspehTyp = 'لا اله الا الله';
+                      duration++;
+                    });
+                  }else if(duration==3){
+                    setState(() {
+                      appCubit.get(context).taspeh = 0.0;
+                      appCubit.get(context).tspehTyp = 'سبحان الله';
+                      duration = 0;
+                    });
+                  }
+                },
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.5,
+                  height: MediaQuery.of(context).size.height * 0.075,
+                  child: Center(
+                    child: Text(
+                      appCubit.get(context).tspehTyp,
+
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Theme.of(context).canvasColor,
+                          fontSize: 30,
+                          fontFamily: 'Amiri',
+                          fontWeight: FontWeight.bold),
+                    ),
+
                   ),
-
                 ),
               ),
 
@@ -121,14 +150,14 @@ class _SebhaScreenState extends State<SebhaScreen> {
       if (appCubit.get(context).taspeh == 33 && duration == 1) {
         setState(() {
           appCubit.get(context).taspeh = 0.0;
-          appCubit.get(context).tspehTyp = 'لا اله الا الله ';
+          appCubit.get(context).tspehTyp = ' الله اكبر';
           duration++;
         });
       }
       if (appCubit.get(context).taspeh == 33 && duration == 2) {
         setState(() {
           appCubit.get(context).taspeh = 0.0;
-          appCubit.get(context).tspehTyp = 'الله اكبر';
+          appCubit.get(context).tspehTyp = 'لا اله الا الله';
           duration++;
         });
       }
@@ -140,30 +169,5 @@ class _SebhaScreenState extends State<SebhaScreen> {
         });
       }
     });
-  }
-  clickCelpration(){
-    if(appCubit.get(context).taspeh==10){
-      return Lottie.network('https://assets9.lottiefiles.com/packages/lf20_up2knbon.json',width: 70);
-    }else{
-      return  ElevatedButton(
-          onPressed: () {
-            onTasbeh();
-          },
-          style: ElevatedButton.styleFrom(
-            elevation: 0,
-            primary: Color.fromARGB(221, 123, 30, 137),
-            shape: new RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(15),
-            ),
-          ),
-          child: Text(
-            'CLICK',
-            style: TextStyle(
-                color: Colors.white.withOpacity(0.9),
-                letterSpacing: 5,
-                fontFamily: 'Amiri'),
-          )
-      );
-    }
   }
 }
