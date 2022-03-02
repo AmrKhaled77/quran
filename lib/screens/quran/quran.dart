@@ -36,7 +36,7 @@ class quranSccreen extends StatelessWidget {
                 padding: const EdgeInsets.only(
                     left: 12.0, right: 12, bottom: 12, top: 15),
                 child: Container(
-                  height: MediaQuery.of(context).size.height * 0.2,
+                  height: MediaQuery.of(context).size.height * 0.24,
                   width: double.infinity,
                   decoration: BoxDecoration(
                       border: Border.all(
@@ -60,7 +60,7 @@ class quranSccreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.02,
+                            height: MediaQuery.of(context).size.height * 0.007,
                           ),
                           Row(
                             children: [
@@ -80,7 +80,7 @@ class quranSccreen extends StatelessWidget {
                             ],
                           ),
                           SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.001,
+                            height: MediaQuery.of(context).size.height * 0.007,
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 6.0),
@@ -88,13 +88,17 @@ class quranSccreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text('${GetlastRead(context)}',
+                                    overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
                                         color: Theme.of(context).canvasColor,
                                         fontWeight: FontWeight.w700,
                                         fontSize: 18)),
                                 Text(
+
                                     '${AppLocalizations.of(context).surahno}: ${appCubit.get(context).currentSurah}',
+                                    overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
+
                                         color: Theme.of(context).canvasColor,
                                         fontWeight: FontWeight.w700,
                                         fontSize: 15)),
@@ -110,7 +114,7 @@ class quranSccreen extends StatelessWidget {
             ),
             appCubit.get(context).hasError
                 ? AlertDialog(
-                    title: Text(AppLocalizations.of(context).alertceck),
+                    title: Text(appCubit.get(context).isArbic?"تحذير!":'ALERT!'),
                     content: Text(AppLocalizations.of(context).alert),
                     actions: <Widget>[
                       TextButton(

@@ -12,7 +12,7 @@ class appCubit extends Cubit<ThemeStates> {
 
   static appCubit get(context) => BlocProvider.of(context);
 
-  bool isDark = false;
+  bool isDark = true;
   bool isArbic = false;
   bool hasData = false;
   void ChangeLANG({bool fromCache}) {

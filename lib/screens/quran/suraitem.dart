@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:z/cubit/appCubit/appcubit.dart';
 import 'package:z/screens/quran/reeding_screen.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 Widget surahItem(context, chaptres) {
   var numberVersessColor =
@@ -14,8 +13,11 @@ Widget surahItem(context, chaptres) {
           );
 
       appCubit.get(context).verses.clear();
+
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => ReadingScreen()));
+          context, MaterialPageRoute(builder: (context) =>
+      chaptres['id']==9||chaptres['id']==1?ReadingEltaubaScreen():
+          ReadingScreen()));
 // appCubit.get(context).getChapterVerses( chapter: chaptres['id']);
       appCubit.get(context).currentSurah = chaptres['id'];
       appCubit.get(context).currentSurahName = appCubit

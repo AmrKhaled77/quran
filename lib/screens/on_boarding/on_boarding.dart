@@ -21,11 +21,14 @@ class _OnBordingState extends State<OnBording> {
     var pageController = PageController();
     List<boardingModel> bording = [
       boardingModel(
-          image: 'assets/images/icon.png', title: "title 1", body: "body 1"),
+          image: 'assets/images/icon.png', title: " القرآن ",
+          body: "استمتع بجميع سور القرآن الكريم كاملة"),
       boardingModel(
-          image: 'assets/images/iconm.png', title: "title 2", body: "body 2"),
+          image: 'assets/images/iconm.png', title: "مواعيد الصلاة",
+          body: "تحديد مواعيد الصلاة في مدينتك"),
       boardingModel(
-          image: 'assets/images/icons.png', title: "title 3", body: "body 3"),
+          image: 'assets/images/icons.png', title: "القبلة  ",
+          body: "قم بتحديد القبلة و اقم صلاتك في اي مكان"),
     ];
     return Scaffold(
       backgroundColor:
@@ -40,7 +43,7 @@ class _OnBordingState extends State<OnBording> {
                 submit();
               },
               child: Text(
-                'SKIP',
+                "تخطي",
                 style: TextStyle(
                     color: appCubit.get(context).isDark
                         ? Colors.deepPurple
@@ -119,6 +122,7 @@ class _OnBordingState extends State<OnBording> {
           Text(
             model.title,
             style: TextStyle(
+                fontFamily: 'Amiri',
                 color:
                     appCubit.get(context).isDark ? Colors.black : Colors.white,
                 fontWeight: FontWeight.bold,
@@ -130,10 +134,13 @@ class _OnBordingState extends State<OnBording> {
           Text(
             model.body,
             style: TextStyle(
+              fontFamily: 'Amiri',
                 color:
                     appCubit.get(context).isDark ? Colors.black : Colors.white,
                 fontWeight: FontWeight.bold,
-                fontSize: 14.0),
+                fontSize: 16.0,)
+
+            ,
           ),
         ],
       );

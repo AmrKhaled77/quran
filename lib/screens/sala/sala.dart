@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:z/components/componants.dart';
 import 'package:z/cubit/appCubit/appcubit.dart';
 import 'package:z/cubit/appCubit/appcubitstats.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class salaTimesScreen extends StatelessWidget {
   @override
@@ -14,16 +15,15 @@ class salaTimesScreen extends StatelessWidget {
           return Center(
               child: appCubit.get(context).salaTimesHasError
                   ? AlertDialog(
-                      title: const Text('ALERT!!'),
-                      content: const Text(
-                          'pleas check your internet connection and try again '),
-                      actions: <Widget>[
-                        TextButton(
-                          onPressed: () {}, //Navigator.pop(context, 'OK'),
-                          child: const Text('OK'),
-                        ),
-                      ],
-                    )
+                title: Text(appCubit.get(context).isArbic?"تحذير!":'ALERT!'),
+                content: Text(AppLocalizations.of(context).alert),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () {}, //Navigator.pop(context, 'OK'),
+                    child: Text(AppLocalizations.of(context).alertceck),
+                  ),
+                ],
+              )
                   : buildSalaScreen(context));
         });
   }
@@ -106,7 +106,7 @@ class salaTimesScreen extends StatelessWidget {
                           Estring: 'Sunrise',
                           Tstring:
                               '${appCubit.get(context).salaTimes[0]['times']['Sunrise']}',
-                          Astring: 'الضحي'),
+                          Astring: 'الشروق'),
                       SizedBox(
                         height: 19,
                       ),

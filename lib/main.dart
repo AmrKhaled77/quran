@@ -7,6 +7,7 @@ import 'package:z/cache_helper/cache_helper.dart';
 import 'package:z/dio_helpr/dio_helper.dart';
 import 'package:z/screens/homescreen.dart';
 import 'package:z/screens/on_boarding/on_boarding.dart';
+import 'package:z/screens/splach/splach.dart';
 import 'cubit/appCubit/appcubit.dart';
 import 'cubit/appCubit/appcubitstats.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -72,55 +73,13 @@ class MyApp extends StatelessWidget {
                   ? ThemeMode.light
                   : ThemeMode.dark,
               home: AnimatedSplashScreen(
-                splash: Column(
-                  children: [
-                    SizedBox(
-                      height: 200,
-                    ),
-                    Image.asset(
-                      "assets/images/icon.png",
-                      fit: BoxFit.fill,
-                    ),
-                    SizedBox(
-                      height: 100,
-                    ),
-                    Center(
-                      child: Text(
-                        'ISLAMY',
-                        style: TextStyle(
-                            color: appCubit.get(context).isDark
-                                ? Colors.black
-                                : Colors.white,
-                            fontSize: 55,
-                            fontWeight: FontWeight.w700,
-                            fontFamily: 'Amiri'),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 25,
-                    ),
-                    Text(
-                      'by AMR KHALED',
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 8,
-                      ),
-                    ),
-                    Text(
-                      'designed by OMAR',
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 8,
-                      ),
-                    )
-                  ],
-                ),
+                splash: Splach(),
                 splashIconSize: 1000,
                 splashTransition: SplashTransition.scaleTransition,
                 backgroundColor: appCubit.get(context).isDark
                     ? Colors.white
                     : Colors.deepPurple,
-                nextScreen: onBoarding ? HomeScreen() : OnBording(),
+                nextScreen: onBoarding!=true? OnBording():HomeScreen(),
               ),
               debugShowCheckedModeBanner: false,
             );
