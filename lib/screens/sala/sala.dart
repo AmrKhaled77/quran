@@ -154,7 +154,9 @@ class salaTimesScreen extends StatelessWidget {
     } else {
       return Expanded(
         child: Center(
-          child: CircularProgressIndicator(),
+          child: CircularProgressIndicator(
+            backgroundColor: Colors.white,
+          ),
         ),
       );
     }

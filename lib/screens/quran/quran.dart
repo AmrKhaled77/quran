@@ -95,7 +95,9 @@ class quranSccreen extends StatelessWidget {
                                         fontSize: 18)),
                                 Text(
 
-                                    '${AppLocalizations.of(context).surahno}: ${appCubit.get(context).currentSurah}',
+                                    '${AppLocalizations.of(context).surahno}: ${
+
+                                        appCubit.get(context).currentSurah==null?"1":appCubit.get(context).currentSurah}',
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
 
@@ -133,7 +135,9 @@ class quranSccreen extends StatelessWidget {
   Widget BuildQuranScreen(context) {
     if (appCubit.get(context).hasData == false) {
       return Center(
-        child: CircularProgressIndicator(),
+        child: CircularProgressIndicator(
+          backgroundColor: Colors.white,
+        ),
       );
     } else {
       print(appCubit.get(context).lastRead);
@@ -159,7 +163,7 @@ class quranSccreen extends StatelessWidget {
 
   String GetlastRead(context) {
     if (appCubit.get(context).currentSurahName == null) {
-      return '';
+      return 'AL-FATIHA';
     } else {
       return appCubit.get(context).currentSurahName;
     }

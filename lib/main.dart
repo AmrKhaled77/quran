@@ -73,7 +73,7 @@ class MyApp extends StatelessWidget {
                   ? ThemeMode.light
                   : ThemeMode.dark,
               home: AnimatedSplashScreen(
-                splash: Splach(),
+                splash: Expanded(child: Splach()),
                 splashIconSize: 1000,
                 splashTransition: SplashTransition.scaleTransition,
                 backgroundColor: appCubit.get(context).isDark
